@@ -25,7 +25,7 @@ import guy1 from '../assets/image/guys/guy1.png';
 import { useRouter } from "next/router";
 import TableItem from "./tableItem";
 import TransactionItem from "./TransactionItem";
-
+import HeaderA from "../Header/HeaderA";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -79,68 +79,15 @@ export const data = {
       },
     ],
   };
+import Sidebar from "../Sidebar/Sidebar";
 export default function AllTransactions(){
     const router = useRouter();
     return(
         <div className="w-auto m-0 p-0">
-            <div className="px-4 flex flex-row items-center w-full h-[70px] bg-[#1B1B1B]">
-                <div className="">
-                    <div className="flex flex-row items-center">
-                        <Image src={logo} width={30} alt="Logo"/>
-                        <p className="text-white text-[1em] ml-2 font-medium">
-                            Flash Affiliate
-                        </p>
-                    </div>
-                </div>
-                <div className="ml-32 px-4 py-2 bg-[#161616] flex flex-row items-center rounded-lg
-                     max-lg:hidden">
-                    <Image src={searchImg} width={19} alt={"search"}/>
-                    <input type="text" className="pl-2 text-[#717171] text-base bg-[#161616] rounded-sm
-                         focus:outline-none font-medium placeholder:text-[#717171]" placeholder="Search"/>
-                </div>
-                <div className="mx-auto max-lg:hidden">
-                    <div className="flex flex-row items-center">
-                        <h1 className="text-white text-lg font-bold">Flash Transfer</h1>
-                        <Image src={chevronDown} width={25} alt={"Chevdown"} className="ml-1 mt-2"/>
-                    </div>
-                </div>
-                <div className=" max-lg:ml-auto mr-2 max-sm:hidden">
-                    <div className="flex flex-row items-center">
-                        <Image src={man1} width={25} alt={"man"}/>
-                        <p className="text-[#717171] text-sm ml-1">
-                            Jenny Willson
-                        </p>
-                    </div>
-                </div>
-                <div className=" ml-auto mr-2 sm:hidden">
-                    <div className="flex flex-row items-center">
-                        <Image src={notification} width={18} alt={""}/>
-                        <Image src={menu} width={18} className="ml-2" alt={""}/>
-                    </div>
-                </div>
-            </div>
-            <div className=" flex flex-row w-full">
-                <div className="w-[250px] bg-[#1B1B1B] max-lg:hidden">
-                    <div className="flex flex-col">
-                        <SidebarItem Imgurl={materialsymbol} section={"OverView"} color={"#1B1B1B"}/>
-                        <SidebarItem Imgurl={statics} section={"Statistics"} color={"#1B1B1B"}/>
-                        <SidebarItem Imgurl={clientDashboard} section={"Client Dashboard"} color={"#1B1B1B"}/>
-                        <SidebarItem Imgurl={billingInvoice} section={"Billing & Invoices"} color={"#1B1B1B"}/>
-                        <SidebarItem Imgurl={allTransaction} section={"All Transactions"} color={"#FBBF04"}/>
-                        <SidebarItem Imgurl={createInvoice} section={"Create Invoice"} color={"#1B1B1B"}/>
-                        <SidebarItem Imgurl={notification} section={"Notification"} color={"#1B1B1B"}/>
-                        <SidebarItem Imgurl={supportEmail} section={"Support Email"} color={"#1B1B1B"}/>                    </div>
-                    <div className=" mt-72 w-full">
-                        <button className="py-2 flex flex-row justify-center items-center 
-                            w-[180px] mx-auto rounded-md bg-[#252525]" onClick={()=>router.push('/')}>
-                            <Image src={loginImg} width={14} alt={""}/>
-                            <p className="text-[#BCBBB9] text-sm ml-2">
-                                Log Out
-                            </p>
-                        </button>
-                    </div>
-                </div>
-                <div className="w-full bg-black pb-10">
+            <HeaderA/>
+            <div className=" flex flex-row w-full pt-[70px]">
+                <Sidebar/>
+                <div className=" w-full bg-black pb-10 pl-[250px] max-lg:pl-0">
                     <div className="pt-5 px-5">
                         <h1 className="text-white text-lg font-bold leading-3">
                             Dashboard
