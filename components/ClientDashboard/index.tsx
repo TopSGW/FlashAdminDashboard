@@ -30,9 +30,9 @@ export default function Client(){
     return(
         <div className="w-auto m-0 p-0">
             <HeaderA/>
-            <div className=" flex flex-rwo w-full pt-[70px]">
+            <div className=" flex flex-rwo w-full pt-[70px] ">
                 <Sidebar/>
-                <div className="w-full bg-black pb-10">
+                <div className="w-full bg-black pb-10 pl-[250px] max-lg:pl-0">
                     <div className="pt-5 px-5">
                         <h1 className="text-white text-lg font-bold leading-3">
                             Client History
