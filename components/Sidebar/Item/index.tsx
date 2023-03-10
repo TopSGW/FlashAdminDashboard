@@ -13,6 +13,7 @@ export default function Item(props:any){
             case "Billing & Invoices":router.push('/dashboard/billingInvoice');dispatch(setorders(3)); break;
             case "All Transactions":router.push('/dashboard/allTransaction');dispatch(setorders(4)); break;
             case "Create Invoice":router.push('/dashboard/createInvoice');dispatch(setorders(5)); break;
+            case "Role":router.push('/dashboard/role');dispatch(setorders(6)); break;            
         }
     }
     return(

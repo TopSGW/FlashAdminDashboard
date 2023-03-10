@@ -87,7 +87,7 @@ export default function AllTransactions(){
             <HeaderA/>
             <div className=" flex flex-row w-full pt-[70px]">
                 <Sidebar/>
-                <div className=" w-full bg-black pb-10 pl-[250px] max-lg:pl-0">
+                <div className=" w-full bg-[#141414] pb-10 pl-[250px] max-lg:pl-0">
                     <div className="pt-5 px-5">
                         <h1 className="text-white text-lg font-bold leading-3">
                             Dashboard

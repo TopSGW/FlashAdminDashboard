@@ -8,6 +8,7 @@ import createInvoice from '../assets/image/sidebar/createInvoice.png';
 import materialsymbol from '../assets/image/sidebar/material-symbols_dashboard.png';
 import notification from '../assets/image/sidebar/notification.png';
 import loginImg from '../assets/image/sidebar/login.png';
+import rolesidebarImg from '../assets/image/sidebar/rolesidebar.png';
 
 
 import SidebarItem from './Item';
@@ -30,6 +31,7 @@ export default function Sidebar(){
                     <SidebarItem Imgurl={createInvoice} section={"Create Invoice"} color={orders[5]? "#FBBF04" : "#1B1B1B"} />
                     <SidebarItem Imgurl={notification} section={"Notification"} color={"#1B1B1B"}/>
                     <SidebarItem Imgurl={supportEmail} section={"Support Email"} color={"#1B1B1B"}/>
+                    <SidebarItem Imgurl={rolesidebarImg} section={"Role"} color={orders[6]? "#FBBF04" : "#1B1B1B"}/>
                 </div>
                 <div className=" absolute bottom-[100px] w-full">
                     <button className="py-2 flex flex-row justify-center items-center 
