@@ -13,7 +13,7 @@ export default function HeaderA(){
             <div className="flex flex-row items-center">
                 <Image src={logo} width={30} alt="Logo"/>
                 <p className="text-white text-[1em] ml-2 font-medium">
-                    Flash Affiliate
+                    Flash Admin
                 </p>
             </div>
         </div>

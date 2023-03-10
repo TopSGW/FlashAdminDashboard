@@ -36,8 +36,8 @@ export default function Role(){
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
                 >
-                <div className="w-[80%] absolute top-[10%] mx-auto left-[10%]
-                 bg-[#1B1B1B] p-5 rounded-md overflow-y-auto max-h-[80%]">
+                <div className="w-[80%] absolute top-[5%] mx-auto left-[10%]
+                 bg-[#1B1B1B] p-5 rounded-md overflow-y-auto max-h-[90%]">
                     <div className="w-full">
                         <div className="flex flex-row items-center">
                             <p className="text-white text-lg font-bold">Invite Team Members</p>
@@ -48,38 +48,34 @@ export default function Role(){
                         <div className="w-[50%] max-md:w-full px-2 py-3">
                             <p className="text-[#BCBBB9] text-base">Select team member roles</p>
                             <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
-                                 border-[#717171] border-solid border-[1px] mt-5">
+                                 border-[#717171] border-solid border-[1px] mt-2">
                                 <Image src={searchImg} width={16} alt={"search"}/>
                                 <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
                                 focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="Search by role..."/>
                             </div>
-                            <p className="text-[#BCBBB9] text-base mt-5">Select team member roles</p>
+                            <p className="text-[#BCBBB9] text-base mt-3">Select team member roles</p>
                             <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
-                                 border-[#717171] border-solid border-[1px] mt-5">
+                                 border-[#717171] border-solid border-[1px] mt-2">
                                 <Image src={searchImg} width={16} alt={"search"}/>
                                 <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
                                 focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="Search by role..."/>
                             </div>
-                            <div className="mt-5 border-t-[2px] border-[#252525] border-solid"></div>
-                            <h1 className="my-4 text-[#BCBBB9] text-lg font-medium">Administrator Role</h1>
-                            <div className="mt-5">
+                            <h1 className="my-3 text-[#BCBBB9] text-lg font-medium">Administrator Role</h1>
+                            <div className="mt-3">
                                 <CheckComponent section={"admin Now"}/>                                    
                             </div>
                             <div className="mt-2">
                                 <CheckComponent section={"Administrator"}/>
                             </div>
-                            <div className="mt-4 border-t-[2px] border-[#252525] border-solid"></div>
-                            <h1 className="my-4 text-[#BCBBB9] text-lg font-medium">Support Role</h1>
+                            <h1 className="my-3 text-[#BCBBB9] text-lg font-medium">Support Role</h1>
                             <div className="mt-2">
                                 <CheckComponent section={"Help desk member"}/>
                             </div>
-                            <div className="mt-4 border-t-[2px] border-[#252525] border-solid"></div>
-                            <h1 className="my-4 text-[#BCBBB9] text-lg font-medium">Developer Roles</h1>
+                            <h1 className="my-3 text-[#BCBBB9] text-lg font-medium">Developer Roles</h1>
                             <div className="mt-2">
                                 <CheckComponent section={"Developer"}/>
                             </div>                            
-                            <div className="mt-4 border-t-[2px] border-[#252525] border-solid"></div>
-                            <h1 className="my-4 text-[#BCBBB9] text-lg font-medium">Payment Roles</h1>
+                            <h1 className="my-3 text-[#BCBBB9] text-lg font-medium">Payment Roles</h1>
                             <div className="mt-2">
                                 <CheckComponent section={"Analyst"}/>
                             </div>
@@ -89,8 +85,7 @@ export default function Role(){
                             <div className="mt-2">
                                 <CheckComponent section={"Refunds Analyst"}/>
                             </div>                                                        
-                            <div className="mt-4 border-t-[2px] border-[#252525] border-solid"></div>
-                            <h1 className="my-4 text-[#BCBBB9] text-lg font-medium">Read Only Roles</h1>
+                            <h1 className="my-3 text-[#BCBBB9] text-lg font-medium">Read Only Roles</h1>
                             <div className="mt-2">
                                 <CheckComponent section={"Read Only"}/>
                             </div>                            
@@ -116,7 +111,7 @@ export default function Role(){
                                             bg-[#FBBF04] rounded-md px-4 py-3 max-sm:px-3" onClick={()=>handleOpen()}>
                                             <Image src={plusImg} width={20} alt={""}/>
                                             <p className="ml-2 text-black text-sm 
-                                                max-sm:hidden">Add vendor</p>
+                                                max-sm:hidden">Send invitation</p>
                                     </button>
                                 </div>                            
                             </div>
@@ -127,7 +122,7 @@ export default function Role(){
             <HeaderA/>
             <div className=" flex flex-row w-full pt-[70px]">
                 <Sidebar/>
-                <div className=" w-full bg-[#141414] pb-10 pl-[250px] max-lg:pl-0">
+                <div className=" w-full bg-[#141414] pb-10 pl-[300px] max-lg:pl-0">
                     <div className="pt-5 px-5">
                         <h1 className="text-white text-lg font-bold leading-3">
                             Roles
@@ -169,7 +164,7 @@ export default function Role(){
                                          bg-[#FBBF04] rounded-md px-4 py-3 max-sm:px-3" onClick={()=>handleOpen()}>
                                         <Image src={plusImg} width={20} alt={""}/>
                                         <p className="ml-2 text-black text-sm 
-                                            max-sm:hidden">Add vendor</p>
+                                            max-sm:hidden">Add member</p>
                                     </button>
                                 </div>
                             </div>

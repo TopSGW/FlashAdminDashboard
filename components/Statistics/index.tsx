@@ -83,7 +83,7 @@ export default function Statistics(){
             <HeaderA/>
             <div className=" flex flex-rwo w-full pt-[70px]">
                 <Sidebar/>
-                <div className="w-full bg-[#141414] pb-10 pl-[250px] max-lg:pl-0">
+                <div className="w-full bg-[#141414] pb-10 pl-[300px] max-lg:pl-0">
                     <div className="pt-10 px-8 flex justify-between items-center max-sm:px-3">
                         <h1 className="text-white text-2xl font-bold leading-3">
                             Statistics
