@@ -19,8 +19,8 @@ export default function Item(props:any){
     return(
         <div className={`flex flex-row pl-12 py-2 items-center 
         hover:bg-slate-400 cursor-pointer bg-[${props?.color}]`} onClick={()=>handleLink()}>
-            <Image src={props?.Imgurl} width={18} alt={""}/>
-            <p className="text-white text-sm ml-2">{props?.section}</p>
+            <Image src={props?.Imgurl} width={22} alt={""}/>
+            <p className="text-white text-base ml-2">{props?.section}</p>
         </div>
     )
 }
