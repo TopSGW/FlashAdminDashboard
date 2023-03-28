@@ -173,13 +173,13 @@ export default function Role(){
                     </div>
                     <div className="mt-3 bg-[#1C1C1C] w-full flex md:justify-between max-md:flex-col relative">
                         <div className="w-[50%] max-md:w-full px-2 py-3">
-                            <p className="text-[#BCBBB9] text-base">Select team member roles</p>
+                            {/* <p className="text-[#BCBBB9] text-base">Select team member roles</p>
                             <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
                                  border-[#717171] border-solid border-[1px] mt-2">
                                 <Image src={searchImg} width={16} alt={"search"}/>
                                 <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
                                 focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="Search by role..."/>
-                            </div>
+                            </div> */}
                             <p className="text-[#BCBBB9] text-base mt-3">Select team member roles</p>
                             <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
                                  border-[#717171] border-solid border-[1px] mt-2">
@@ -224,19 +224,19 @@ export default function Role(){
                                 placeholder:text-sm bg-[#161616] border-[2px] border-solid border-[#717171] w-full min-h-[300px]" 
                                 placeholder="Search by role...">
                             </textarea>
-                            <div className="md:bottom-12 flex flex-row items-center  max-md:w-full md:w-[50%] md:absolute">
-                                <div className="ml-auto">
-                                    <button className="flex justify-center items-center max-sm:h-[45px]
+                            <div className="md:bottom-12 flex items-center max-[318px]:justify-center  min-[318px]:flex-row max-[318px]:flex-col  max-md:w-full md:w-[50%] md:absolute">
+                                <div className="min-[318px]:ml-auto">
+                                    <button className="flex justify-center items-center
                                             bg-white rounded-md px-4 max-sm:px-3 py-3">
-                                        <p className="text-black font-bold text-sm 
-                                            max-sm:hidden">Cancel</p>
+                                        <p className="text-black font-bold text-sm max-sm:text-xs 
+                                            ">Cancel</p>
                                     </button>
                                 </div>
-                                <div className="ml-2 mr-4">
+                                <div className="ml-2 mr-4 max-[318px]:mt-2">
                                     <button className="flex justify-center items-center
                                             bg-[#FBBF04] rounded-md px-4 py-3 max-sm:px-3" onClick={()=>handleOpen()}>
-                                            <p className="text-black text-sm font-bold 
-                                                max-sm:hidden">Send invitation</p>
+                                            <p className="text-black text-sm font-bold max-sm:text-xs 
+                                                ">Send invitation</p>
                                     </button>
                                 </div>                            
                             </div>
