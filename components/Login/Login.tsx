@@ -60,10 +60,10 @@ export default function Login(){
                             Log in
                         </button>
                     </div>
-                    <div className='mt-6 w-full flex flex-row justify-center items-center'>
+                    {/* <div className='mt-6 w-full flex flex-row justify-center items-center'>
                         <p className='text-gray-400 text-base'>Don`t have account yet?</p>
                         <p className='text-[#FBBF04] text-base ml-2 cursor-pointer' onClick={()=>router.push('/validate')}>New Account</p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

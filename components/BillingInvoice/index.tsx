@@ -26,14 +26,15 @@ import TableItem from "./tableItem";
 
 import Sidebar from "../Sidebar/Sidebar";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setorders } from "../../utils/slice/ordersSlice";
 import { Pagination } from "@mui/material";
 export default function BillingInvoice(){
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(setorders(3));
-    },[dispatch])    
+    },[dispatch])
+    const [tabselected, settabselected] = useState([true,false,false]);    
     return(
         <div className="w-auto m-0 p-0">
             <HeaderA/>
@@ -51,18 +52,23 @@ export default function BillingInvoice(){
                     <div className="mt-4 border-t-[1px] border-[#717171] border-solid"></div>
                     <div className="pt-5 px-5 mt-4">
                         <div className="flex flex-row items-start">
-                            <p className="text-white text-base font-sans border-b-[1px] border-solid
-                            border-[#FBBF04]">
+                            <p className={`text-white text-base font-sans 
+                             cursor-pointer ${tabselected[0] ? 'border-b-[1px] border-solid border-[#FBBF04]': ''}`}
+                                onClick={()=> settabselected([true,false,false])}>
                                 Open Invoices
                             </p>
-                            <p className="text-white text-base font-sans ml-4">
+                            <p className={`text-white text-base font-sans ml-4 cursor-pointer ${tabselected[1] ? 'border-b-[1px] border-solid border-[#FBBF04]': ''}`}
+                                onClick={()=> settabselected([false,true,false])}>
                                 Past Invoices
                             </p>
-                            <p className="text-white text-base font-sans ml-4">
+                            <p className={`text-white text-base font-sans ml-4 cursor-pointer
+                                ${tabselected[2] ? 'border-b-[1px] border-solid border-[#FBBF04]': ''}`}
+                                onClick={()=> settabselected([false,false,true])}>
                                 All Invoices
                             </p>
                         </div>
-                        <table className="mt-4 w-full">
+                        {tabselected[0] ? <>
+                            <table className="mt-4 w-full">
                             <thead>
                                 <tr className="bg-[#1B1B1B] rounded-md">
                                     <th className="py-2 rounded-l-md pl-2">
@@ -113,6 +119,9 @@ export default function BillingInvoice(){
                         <div className="mt-4 w-full flex justify-end pr-[10%]">
                             <Pagination count={6} color="secondary" shape="rounded"/>
                         </div>
+                        </>: <></> }
+                        {tabselected[1]?<div className="w-full h-[700px]"></div> : <></>}
+                        {tabselected[2]?<div className="w-full h-[700px]"></div> : <></>}
                     </div>                                        
                 </div>
             </div>            
