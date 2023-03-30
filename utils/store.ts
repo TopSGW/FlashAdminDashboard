@@ -19,9 +19,11 @@ import {
 	PURGE,
 	REGISTER,
 } from 'redux-persist';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import userSlice from './slice/userSlice';
+
 const rootReducer = combineReducers({
 	orders: ordersSlice,
+	user: userSlice,
 });
 const makeConfiguredStore = () =>
 	configureStore({
