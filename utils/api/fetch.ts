@@ -19,6 +19,7 @@ export function getRequest(url: string, params?: Record<string, string>) {
 		},
 	})
 		.then((res: any): any => {
+			console.log(res.ok);
 			if (res.ok) {
 				return true;
 			}
