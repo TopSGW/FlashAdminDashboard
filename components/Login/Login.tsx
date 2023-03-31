@@ -4,12 +4,15 @@ import logo from '../assets/logo/logo.png';
 import eyeshow from '../assets/icons/eye-show.png';
 import eyehidden from '../assets/icons/eye-hide.png';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import CookieAcceptBar from 'components/cookieAccpet';
+import { useLogin } from '@hooks/useAuth';
+import { toast } from 'react-toastify';
 export default function Login() {
 	const [showstate, setshowstate] = useState(false);
 	const [password, Setpassword] = useState('');
+	const [email, setEmail] = useState('');
 	const [checkedstate, setcheckedstate] = useState(false);
 	const handleVisible = () => {
 		const password = document.querySelector('#password');
@@ -19,6 +22,14 @@ export default function Login() {
 		setshowstate(!showstate);
 	};
 	const router = useRouter();
+	const login = useLogin();
+	const handleLogin = () => {
+		if (email === '' || password === '') {
+			toast.warn('please input credential correctly');
+			return;
+		}
+		login.mutate({ email, password, rememeber: checkedstate });
+	};
 	return (
 		<div className=' w-screen h-screen bg-[#1B1B1B]'>
 			<div className='pt-[14vh]'>
@@ -48,6 +59,8 @@ export default function Login() {
 							className='py-3 px-4 bg-[#161616] text-[#717171] text-base w-full rounded-[10px] 
                         placeholder:text-[#717171] focus:outline-none'
 							placeholder='example@gmail.com'
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
 						/>
 					</div>
 					<div className='mt-3'>
@@ -99,7 +112,7 @@ export default function Login() {
 						<button
 							className='w-full mx-auto py-4 text-center bg-[#FBBF04] text-black 
                             text-lg font-bold rounded-sm'
-							onClick={() => router.push('/dashboard/overview/')}
+							onClick={handleLogin}
 						>
 							Log in
 						</button>

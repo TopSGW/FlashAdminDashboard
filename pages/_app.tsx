@@ -10,7 +10,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
 import { queryClient } from '@utils/api';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider } from 'context/auth_context';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 const App: FC<AppProps> = ({ Component, ...rest }) => {
 	const { store, props } = wrapper.useWrappedStore(rest);
@@ -21,9 +20,7 @@ const App: FC<AppProps> = ({ Component, ...rest }) => {
 		<Provider store={store}>
 			<QueryClientProvider client={queryClient}>
 				<PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
-					<AuthProvider>
-						<Component {...props.pageProps} />
-					</AuthProvider>
+					<Component {...props.pageProps} />
 				</PersistGate>
 				<ToastContainer />
 				<ReactQueryDevtools initialIsOpen={isOpen} />

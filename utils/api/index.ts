@@ -34,7 +34,14 @@ apiClient.interceptors.request.use((config: AxiosRequestConfig) => {
 	if (config.url) {
 		config.url = getUrl(config.url);
 	}
+	if (config.method?.toUpperCase() === 'POST') {
+		config.headers = {
+			...config.headers,
+			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+		};
+	}
 	config.url = `api/admin/${config.url}`;
+
 	return config;
 });
 
@@ -49,6 +56,7 @@ apiClient.interceptors.response.use(
 			await refreshToken();
 			return apiClient(originalRequest);
 		}
+
 		return Promise.reject(error);
 	}
 );
