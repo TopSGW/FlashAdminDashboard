@@ -12,7 +12,11 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
 		return NextResponse.next();
 	} else {
 		try {
-			const isAuthenticated = await getRequest(urlConfig.auth.getProfile);
+			const isAuthenticated = await getRequest(
+				urlConfig.auth.getProfile,
+				undefined,
+				request.cookies.getAll()
+			);
 			if (isAuthenticated === false) {
 				return NextResponse.redirect(new URL('/', request.url));
 			} else {

@@ -1,21 +1,30 @@
 /** @format */
 
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import urlConfig, { baseUrl } from './config';
 
-export function getRequest(url: string, params?: Record<string, string>) {
+export function getRequest(
+	url: string,
+	params?: Record<string, string>,
+	cookies?: RequestCookie[]
+) {
 	let configUrl: string = '';
 	let urlStr: string = '';
+	let cookie: string = '';
 	if (params) {
 		urlStr = new URLSearchParams(params).toString();
 		urlStr = '?' + urlStr;
 	}
 	configUrl = baseUrl + '/api/admin/' + url + urlStr;
-
+	if (cookies) {
+		cookie = convertStringFromCookies(cookies);
+	}
 	return fetch(configUrl, {
 		method: 'GET',
-		credentials: 'include',
+		credentials: 'same-origin',
 		headers: {
 			'Content-Type': 'application/json',
+			cookie: cookie,
 		},
 	})
 		.then((res: any): any => {
@@ -43,7 +52,7 @@ export function postRequest(url: string, params?: Record<string, any>) {
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 		},
-		credentials: 'include',
+		credentials: 'same-origin',
 	}).then((response) => response.json());
 }
 
@@ -69,4 +78,16 @@ export function makeFormData(params?: Record<string, any>) {
 		}
 	}
 	return formData;
+}
+
+export function convertStringFromCookies(cookies: RequestCookie[]) {
+	let result = '';
+
+	for (const cookie of cookies) {
+		result += cookie.name + '=' + cookie.value + '; ';
+	}
+	result = result.slice(0, -1);
+	result = result.slice(0, -1);
+
+	return result;
 }
