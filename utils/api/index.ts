@@ -51,6 +51,7 @@ apiClient.interceptors.response.use(
 	},
 	async function (error) {
 		const originalRequest = error.config;
+
 		if (error.response.status === 403 && !originalRequest._retry) {
 			originalRequest._retry = true;
 			await refreshToken();
