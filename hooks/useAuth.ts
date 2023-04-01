@@ -26,7 +26,6 @@ export function useLogin() {
 	});
 }
 export function login(payload: LoginPayload) {
-	console.log('payload,', payload);
 	return apiClient
 		.post(config.auth.signIn, payload)
 		.then((response) => response.data);

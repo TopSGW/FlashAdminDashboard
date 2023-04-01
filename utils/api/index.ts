@@ -2,6 +2,7 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { baseUrl, getUrl } from './config';
+
 import config from './config';
 export type BackendResponse = {
 	status: string;
@@ -52,12 +53,15 @@ apiClient.interceptors.response.use(
 	async function (error) {
 		const originalRequest = error.config;
 
-		if (error.response.status === 403 && !originalRequest._retry) {
+		if (error?.response?.status === 403 && !originalRequest._retry) {
 			originalRequest._retry = true;
 			await refreshToken();
 			return apiClient(originalRequest);
 		}
-
+		console.log(location.toLocaleString());
+		if (error?.response?.status === 401 && location.pathname !== '/') {
+			location.href = '/';
+		}
 		return Promise.reject(error);
 	}
 );

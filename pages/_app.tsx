@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import { queryClient } from '@utils/api';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import AuthProvider from 'context/auth_context';
 const App: FC<AppProps> = ({ Component, ...rest }) => {
 	const { store, props } = wrapper.useWrappedStore(rest);
 	const isOpen = process.env.NODE_ENV
@@ -20,7 +21,9 @@ const App: FC<AppProps> = ({ Component, ...rest }) => {
 		<Provider store={store}>
 			<QueryClientProvider client={queryClient}>
 				<PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
-					<Component {...props.pageProps} />
+					<AuthProvider>
+						<Component {...props.pageProps} />
+					</AuthProvider>
 				</PersistGate>
 				<ToastContainer />
 				<ReactQueryDevtools initialIsOpen={isOpen} />

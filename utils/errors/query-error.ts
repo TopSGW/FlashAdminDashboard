@@ -7,7 +7,7 @@ import { BackendErrorResponse } from './backend-error-response';
 export function onQueryError(r: unknown) {
 	if (axios.isAxiosError(r) && r.response) {
 		const response = r.response.data as BackendErrorResponse;
-		console.log('response', response);
+
 		if (!response.errors) {
 			if (response.success === false && response.message) {
 				toast.error(response.message);
