@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 export default function NewAccount() {
 	const router = useRouter();
 	const { pid } = router.query;
-	console.log(pid);
+
 	if (typeof pid !== 'string' && pid !== undefined) {
 		return router.push('/404');
 	}

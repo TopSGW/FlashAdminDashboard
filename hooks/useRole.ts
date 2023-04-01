@@ -3,22 +3,24 @@
 import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '@utils/api';
 import config from '@utils/api/config';
-import { stringify } from 'querystring';
+
 export type getRolePayload = {
-	limit: number;
-	curPage: number;
+	pagination: number;
+	curpage: number;
 	search?: string;
 };
-const endpoint = (limit: number, skip: number, search?: string) =>
-	`${config.auth.searchAdmin}/${limit}/${skip}/${search}`;
+const endpoint = (limit: number, curPage: number, search?: string) =>
+	`${config.auth.searchAdmin}/${limit}/${curPage}/${search}`;
 
 export default function (payload: getRolePayload) {
-	const { isLoading, data } = useQuery([
-		endpoint(payload.limit, payload.curPage, payload.search),
-		() => fetchRoleApi(payload),
-	]);
+	const { isLoading, data } = useQuery(
+		[endpoint(payload.pagination, payload.curpage, payload.search)],
+		() => fetchRoleApi(payload)
+	);
+	console.log(data);
 }
 export function fetchRoleApi(payload: getRolePayload) {
-	const url = config.auth.searchAdmin + '?' + stringify(payload);
-	return apiClient.get(url).then((response) => response.data);
+	return apiClient
+		.get(config.auth.searchAdmin, { params: payload })
+		.then((response) => response.data);
 }

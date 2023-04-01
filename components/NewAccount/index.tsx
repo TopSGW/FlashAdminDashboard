@@ -15,15 +15,18 @@ export type NewAccountProps = {
 	curPage: number;
 };
 export default function NewAccount({ curPage = 1 }: NewAccountProps) {
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const router = useRouter();
 
-	useEffect(() => {
-		dispatch(setorders(7));
-	}, [dispatch]);
+	useRole({ pagination: 10, curpage: curPage, search: '' });
+	// useEffect(() => {
+	// 	dispatch(setorders(7));
+	// }, [dispatch]);
+
 	const handlePaginationChange = (e: any, page: number) => {
 		router.push('/dashboard/newaccount/' + page);
 	};
+
 	const tableData = [
 		{
 			section: 'No KYC',
@@ -185,7 +188,7 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 									shape='rounded'
 									showFirstButton
 									showLastButton
-									defaultPage={curPage}
+									defaultPage={curPage ? curPage : 1}
 									onChange={handlePaginationChange}
 								/>
 							</div>
