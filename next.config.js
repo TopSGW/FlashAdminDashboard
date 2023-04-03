@@ -16,6 +16,11 @@ const nextConfig = {
 				destination: '/dashboard/newaccount/1',
 				permanent: true,
 			},
+			{
+				source: '/dashboard/role',
+				destination: '/dashboard/role/1',
+				permanent: true,
+			},
 		];
 	},
 };

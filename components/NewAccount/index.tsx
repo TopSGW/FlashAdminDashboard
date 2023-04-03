@@ -4,29 +4,37 @@ import Image from 'next/image';
 import HeaderA from '../Header/HeaderA';
 import Sidebar from '../Sidebar/Sidebar';
 import allListImg from '../assets/image/newAccount/allList.png';
-import TableItem from './tableItem';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { setorders } from '../../utils/slice/ordersSlice';
+
 import { Pagination } from '@mui/material';
 import useRole from '@hooks/useRole';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setorders } from "../../utils/slice/ordersSlice";
 export type NewAccountProps = {
 	curPage: number;
 };
 export default function NewAccount({ curPage = 1 }: NewAccountProps) {
-	// const dispatch = useDispatch();
+	
 	const router = useRouter();
-
-	useRole({ pagination: 10, curpage: curPage, search: '' });
-	// useEffect(() => {
-	// 	dispatch(setorders(7));
-	// }, [dispatch]);
-
+	// const {isLoading,data} = useRole({ pagination: 10, curpage: curPage, search: '' });
+	
 	const handlePaginationChange = (e: any, page: number) => {
 		router.push('/dashboard/newaccount/' + page);
 	};
 
+	// const totalPage = data?data.totalPage:1
+	// const isPageExist = data?.success?true:false;
+	// if(!isLoading && !isPageExist){
+	// 	toast.error("page dotn exist");
+	// }
+	// const tableData = (!isLoading &&!isPageExist)?[]:data?.users;
+	
+	const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(setorders(7));
+    },[dispatch])  
 	const tableData = [
 		{
 			section: 'No KYC',
@@ -136,20 +144,7 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 									</tr>
 								</thead>
 								<tbody>
-									{/* <TableItem bgcolor={"#F86E51"} section={"No KYC"} txtcolor={"#F86E51"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#FBBF04"} section={"KYC-2"} txtcolor={"#FBBF04"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/>
-                                    <TableItem bgcolor={"#55BA68"} section={"KYC-3"} txtcolor={"#55BA68"}/> */}
+									
 									{tableData.map((data: any, index) => {
 										return (
 											<tr key={index}>
@@ -188,8 +183,9 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 									shape='rounded'
 									showFirstButton
 									showLastButton
-									defaultPage={curPage ? curPage : 1}
+									// defaultPage={curPage ? curPage : 1}
 									onChange={handlePaginationChange}
+									
 								/>
 							</div>
 						</div>
