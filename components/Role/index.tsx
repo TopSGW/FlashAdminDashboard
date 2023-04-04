@@ -173,13 +173,54 @@ export default function Role(){
                     </div>
                     <div className="mt-3 bg-[#1C1C1C] w-full flex md:justify-between max-md:flex-col relative">
                         <div className="w-[50%] max-md:w-full px-2 py-3">
-                            {/* <p className="text-[#BCBBB9] text-base">Select team member roles</p>
+                            <p className="text-[#BCBBB9] text-base mt-2">Username</p>
                             <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
                                  border-[#717171] border-solid border-[1px] mt-2">
                                 <Image src={searchImg} width={16} alt={"search"}/>
                                 <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
-                                focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="Search by role..."/>
-                            </div> */}
+                                focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="example@gmail.com"/>
+                            </div>                            
+                            <div className="w-full flex sm:justify-between max-sm:flex-col max-sm:justify-center">
+                                <div className="w-[40%] max-sm:w-full">
+                                    <p className="text-[#BCBBB9] text-base mt-2">First Name</p>
+                                    <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
+                                        border-[#717171] border-solid border-[1px] mt-2">
+                                        <Image src={searchImg} width={16} alt={"search"}/>
+                                        <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
+                                        focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="Numan"/>
+                                    </div>
+                                </div>
+                                <div className="w-[40%] max-sm:w-full max-sm:mt-3">
+                                    <p className="text-[#BCBBB9] text-base mt-2">Last Name</p>
+                                    <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
+                                        border-[#717171] border-solid border-[1px] mt-2">
+                                        <Image src={searchImg} width={16} alt={"search"}/>
+                                        <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
+                                        focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="Zafar"/>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <p className="text-[#BCBBB9] text-base mt-2">Email Address</p>
+                            <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
+                                 border-[#717171] border-solid border-[1px] mt-2">
+                                <Image src={searchImg} width={16} alt={"search"}/>
+                                <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
+                                focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="example@gmail.com"/>
+                            </div>
+                            <p className="text-[#BCBBB9] text-base mt-2">Password</p>
+                            <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
+                                 border-[#717171] border-solid border-[1px] mt-2">
+                                <Image src={searchImg} width={16} alt={"search"}/>
+                                <input type="password" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
+                                focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="example@gmail.com"/>
+                            </div>                                                        
+                            <p className="text-[#BCBBB9] text-base mt-2">Enter team member email addresses</p>
+                            <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
+                                 border-[#717171] border-solid border-[1px] mt-2">
+                                <Image src={searchImg} width={16} alt={"search"}/>
+                                <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
+                                focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="test@flash-technologies.org"/>
+                            </div>
                             <p className="text-[#BCBBB9] text-base mt-3">Select team member roles</p>
                             <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
                                  border-[#717171] border-solid border-[1px] mt-2">
