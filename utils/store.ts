@@ -1,58 +1,72 @@
-import { configureStore , combineReducers, ThunkAction, Action} from '@reduxjs/toolkit'
-import  ordersSlice  from './slice/ordersSlice'
-import storage from "redux-persist/lib/storage";
+/** @format */
+
+import {
+	configureStore,
+	combineReducers,
+	ThunkAction,
+	Action,
+} from '@reduxjs/toolkit';
+import ordersSlice from './slice/ordersSlice';
+import storage from 'redux-persist/lib/storage';
 import { createWrapper } from 'next-redux-wrapper';
-import { persistReducer, persistStore ,  
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,} from 'redux-persist';
+import {
+	persistReducer,
+	persistStore,
+	FLUSH,
+	REHYDRATE,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER,
+} from 'redux-persist';
+import userSlice from './slice/userSlice';
 
 const rootReducer = combineReducers({
-    orders: ordersSlice,
-  });
+	orders: ordersSlice,
+	user: userSlice,
+});
 const makeConfiguredStore = () =>
-  configureStore({
-     reducer: rootReducer,
-  });
+	configureStore({
+		reducer: rootReducer,
+		devTools: process.env.NODE_ENV !== 'production',
+	});
 export const makeStore = () => {
-    const isServer = typeof window === "undefined";
-    if (isServer) {
-      return makeConfiguredStore();
-    } else {
-      // we need it only on client side
-      
-      const persistConfig = {
-        key: "nextjs",
-        whitelist: ["orders"], // make sure it does not clash with server keys
-        storage,
-      };
-      const persistedReducer = persistReducer(persistConfig, rootReducer);
-      let store: any = configureStore({
-        reducer: persistedReducer,
-        middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-          serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-          },
-        }),
-      });
-      store.__persistor = persistStore(store); // Nasty hack
-      return store;
-    }
-  }; 
-export type AppStore = ReturnType<typeof makeStore>;  
+	const isServer = typeof window === 'undefined';
+	if (isServer) {
+		return makeConfiguredStore();
+	} else {
+		// we need it only on client side
+
+		const persistConfig = {
+			key: 'nextjs',
+			whitelist: ['orders'], // make sure it does not clash with server keys
+			storage,
+		};
+
+		const persistedReducer = persistReducer(persistConfig, rootReducer);
+		let store: any = configureStore({
+			reducer: persistedReducer,
+			middleware: (getDefaultMiddleware) =>
+				getDefaultMiddleware({
+					serializableCheck: {
+						ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+					},
+				}),
+			devTools: process.env.NODE_ENV !== 'production',
+		});
+		store.__persistor = persistStore(store); // Nasty hack
+		return store;
+	}
+};
+export type AppStore = ReturnType<typeof makeStore>;
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type AppState = ReturnType<AppStore["getState"]>;
+export type AppState = ReturnType<AppStore['getState']>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppState,
-  unknown,
-  Action
+	ReturnType,
+	AppState,
+	unknown,
+	Action
 >;
 
 export const wrapper = createWrapper(makeStore);
-

@@ -1,10 +1,28 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  images:{
-    unoptimized : true,
-  }
-}
+/**
+ * @format
+ * @type {import('next').NextConfig}
+ */
 
-module.exports = nextConfig
+const nextConfig = {
+	reactStrictMode: true,
+	swcMinify: true,
+	images: {
+		unoptimized: true,
+	},
+	redirects: async function () {
+		return [
+			{
+				source: '/dashboard/newaccount',
+				destination: '/dashboard/newaccount/1',
+				permanent: true,
+			},
+			{
+				source: '/dashboard/role',
+				destination: '/dashboard/role/1',
+				permanent: true,
+			},
+		];
+	},
+};
+
+module.exports = nextConfig;
