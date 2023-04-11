@@ -38,7 +38,7 @@ export default function Sidebar(){
                     <SidebarItem Imgurl={orders[3] ? buillingInvoiceSvg : billingInvoice} section={"Billing & Invoices"} color={orders[3]? "#FBBF04" : "#1B1B1B"} />
                     <SidebarItem Imgurl={orders[4] ? allTransactionSvg : allTransaction} section={"All Transactions"} color={orders[4]? "#FBBF04" : "#1B1B1B"} />
                     <SidebarItem Imgurl={orders[5] ? createInvoiceSvg : createInvoice} section={"Create Invoice"} color={orders[5]? "#FBBF04" : "#1B1B1B"} />
-                    <SidebarItem Imgurl={notification} section={"Notification"} color={"#1B1B1B"}/>
+                    <SidebarItem Imgurl={notification} section={"Notification"} color={orders[8]? "#FBBF04" : "#1B1B1B"}/>
                     {/* <SidebarItem Imgurl={supportEmail} section={"Support Email"} color={"#1B1B1B"}/> */}
                     <SidebarItem Imgurl={orders[6] ? rolesidebarImg : roleSvg} section={"Role"} color={orders[6]? "#FBBF04" : "#1B1B1B"}/>
                     <SidebarItem Imgurl={orders[7] ? newclientB : newclientW} section={"New Account"} color={orders[7]? "#FBBF04" : "#1B1B1B"}/>

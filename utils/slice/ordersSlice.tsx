@@ -9,7 +9,7 @@ export interface ordersState {
 }
 
 const initialState:ordersState = {
-    value:[true,false,false, false,false,false,false,false]
+    value:[true,false,false, false,false,false,false,false,false]
 }
 
 export const ordersSlice = createSlice({
@@ -17,7 +17,7 @@ export const ordersSlice = createSlice({
     initialState,
     reducers: {
         setorders: (state, action:PayloadAction<number>) =>{
-            let tmpstate = [false,false,false, false,false,false,false,false];
+            let tmpstate = [false,false,false, false,false,false,false,false,false];
             state.value = tmpstate;
             tmpstate[action.payload] = true;
             state.value = tmpstate;
