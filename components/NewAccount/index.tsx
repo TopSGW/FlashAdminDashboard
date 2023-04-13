@@ -179,10 +179,8 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 							<div className='w-full flex justify-center mt-2'>
 								<Pagination
 									count={4}
-									color='secondary'
+									color='flashPrimary'
 									shape='rounded'
-									showFirstButton
-									showLastButton
 									// defaultPage={curPage ? curPage : 1}
 									onChange={handlePaginationChange}
 									

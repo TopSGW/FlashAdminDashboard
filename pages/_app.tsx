@@ -12,6 +12,28 @@ import { queryClient } from '@utils/api';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import AuthProvider from 'context/auth_context';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const theme = createTheme({
+    palette: {
+      flashPrimary: {
+        main: '#FFAB17',
+        light: '#ff7961',
+        dark: '#ba000d',
+      },
+    },
+  });
+
+  declare module '@mui/material/styles' {
+    interface Palette {
+        flashPrimary?: Palette['secondary'];
+    }
+  
+    // allow configuration using `createTheme`
+    interface PaletteOptions {
+        flashPrimary?: PaletteOptions['secondary'];
+    }
+  }
+
 const App: FC<AppProps> = ({ Component, ...rest }) => {
 	const { store, props } = wrapper.useWrappedStore(rest);
 	const isOpen = process.env.NODE_ENV
@@ -22,7 +44,9 @@ const App: FC<AppProps> = ({ Component, ...rest }) => {
 			<QueryClientProvider client={queryClient}>
 				<PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
 					<AuthProvider>
-						<Component {...props.pageProps} />
+						<ThemeProvider theme={theme}>
+							<Component {...props.pageProps} />
+						</ThemeProvider>
 					</AuthProvider>
 				</PersistGate>
 				<ToastContainer />
