@@ -24,9 +24,11 @@ import SidebarItem from './Item';
 import { useRouter } from 'next/router';
 import { selectordersState } from '../../utils/slice/ordersSlice';
 import { useSelector } from 'react-redux';
+import { useLogout } from '@hooks/useAuth';
 export default function Sidebar(){
     const router = useRouter();
     const orders = useSelector(selectordersState);
+    const logout = useLogout();
     return(
         <div className="fixed w-[300px] bg-[#1B1B1B] max-lg:hidden h-full">
             <div className='relative w-full h-full'>
@@ -45,7 +47,7 @@ export default function Sidebar(){
                 </div>
                 <div className=" absolute bottom-[100px] w-full">
                     <button className="py-2 flex flex-row justify-center items-center 
-                        w-[180px] mx-auto rounded-md bg-[#252525]" onClick={()=> router.push('/')}>
+                        w-[180px] mx-auto rounded-md bg-[#252525]" onClick={()=>logout.mutate()}>
                         <Image src={loginImg} width={14} alt={""}/>
                         <p className="text-[#BCBBB9] text-sm ml-2">
                             Log Out

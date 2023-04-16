@@ -10,6 +10,7 @@ export type createAdminPayload = {
 	role:ROLE,
 	email:string;
 	roleDescription:string;
+	password:string;
 }
 export type getRolePayload = {
 	pagination: number;
@@ -31,7 +32,7 @@ export function useCreateAdmin(pagination:number,curpage:number,search?:string){
 	return useMutation(createAdmin,{
 		onSuccess: (response) => {
 			if (response.success) {
-				toast.success(response.message);
+				toast.success("success!");
 				queryClient.invalidateQueries([endpoint(pagination,curpage,search)]);
 			} else {
 				toast.warn(response.message);
