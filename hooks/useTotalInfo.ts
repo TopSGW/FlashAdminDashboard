@@ -35,7 +35,7 @@ export function useRevene() {
 
 export function useReveneBetween(payload: BetweenProps) {
 	const { isLoading, data } = useQuery(
-		[endpoint(config.overview.getRevenBetween, payload)],
+		[endpoint(config.statistic.getRevenBetween, payload)],
 		() => fetchRevenueBetween(payload)
 	);
 	return { isLoading, data: data?.data, message: data?.message };
@@ -43,7 +43,7 @@ export function useReveneBetween(payload: BetweenProps) {
 
 export function useTotalProducts(payload: BetweenProps) {
 	const { isLoading, data } = useQuery(
-		[endpoint(config.overview.getTotalProducts, payload)],
+		[endpoint(config.statistic.getTotalProducts, payload)],
 		() => fetchTotalProducts(payload)
 	);
 	return { isLoading, data: data?.data, message: data?.message };
@@ -51,7 +51,7 @@ export function useTotalProducts(payload: BetweenProps) {
 
 export function useTotalInfoBetween(payload: BetweenProps) {
 	const { isLoading, data } = useQuery(
-		[endpoint(config.overview.getTotalInfoBetween, payload)],
+		[endpoint(config.statistic.getTotalInfoBetween, payload)],
 		() => fetchTotalInforBetween(payload)
 	);
 	return { isLoading, data: data?.data, message: data?.message };
@@ -71,16 +71,16 @@ export function fetchRecentActivity() {
 }
 export function fetchTotalInforBetween(payload: BetweenProps) {
 	return apiClient
-		.get(config.overview.getTotalInfoBetween, { params: payload })
+		.get(config.statistic.getTotalInfoBetween, { params: payload })
 		.then((res) => res.data);
 }
 export function fetchTotalProducts(payload: BetweenProps) {
 	return apiClient
-		.get(config.overview.getTotalProducts, { params: payload })
+		.get(config.statistic.getTotalProducts, { params: payload })
 		.then((res) => res.data);
 }
 export function fetchRevenueBetween(payload: BetweenProps) {
 	return apiClient
-		.get(config.overview.getRevenBetween, { params: payload })
+		.get(config.statistic.getRevenBetween, { params: payload })
 		.then((res) => res.data);
 }
