@@ -6,7 +6,6 @@ import {
 	ThunkAction,
 	Action,
 } from '@reduxjs/toolkit';
-import ordersSlice from './slice/ordersSlice';
 import storage from 'redux-persist/lib/storage';
 import { createWrapper } from 'next-redux-wrapper';
 import {
@@ -19,11 +18,17 @@ import {
 	PURGE,
 	REGISTER,
 } from 'redux-persist';
+
 import userSlice from './slice/userSlice';
+import ordersSlice from './slice/ordersSlice';
+import overviewSlice from './slice/overviewSlice';
+import allTransactionSlice from './slice/allTransactionSlice';
 
 const rootReducer = combineReducers({
 	orders: ordersSlice,
 	user: userSlice,
+	overview: overviewSlice,
+	allTransaction: allTransactionSlice
 });
 const makeConfiguredStore = () =>
 	configureStore({
@@ -39,7 +44,7 @@ export const makeStore = () => {
 
 		const persistConfig = {
 			key: 'nextjs',
-			whitelist: ['orders'], // make sure it does not clash with server keys
+			whitelist: ['orders','overview','allTransaction'], // make sure it does not clash with server keys
 			storage,
 		};
 
@@ -61,6 +66,7 @@ export const makeStore = () => {
 export type AppStore = ReturnType<typeof makeStore>;
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type AppState = ReturnType<AppStore['getState']>;
+
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppThunk<ReturnType = void> = ThunkAction<
 	ReturnType,

@@ -28,13 +28,11 @@ export default function tableItem(){
         <td className="py-2 max-sm:hidden">
             <div className="text-white text-center">
                 <p className="text-base">$45,25</p>
-                <p className="mt-1 text-sm text-[#717171]">72,423 GBP</p>
             </div>
         </td>
         <td className="py-2 text-right">
             <div className="text-white">
                 <p className="text-base">$45,25</p>
-                <p className="mt-1 text-sm text-[#717171]">72,423 GBP</p>
             </div>
         </td>
     </tr>

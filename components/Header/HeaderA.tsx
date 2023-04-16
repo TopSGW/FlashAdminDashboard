@@ -5,7 +5,9 @@ import chevronDown from '../assets/image/header/chevron-down.png';
 import man1 from '../assets/image/header/man1.png';
 import notification from '../assets/image/sidebar/notification.png';
 import menu from '../assets/image/sidebar/menu.png';
+import { useRouter } from "next/router";
 export default function HeaderA(){
+    const router = useRouter()
     return(
         <div className="px-4 flex flex-row items-center w-full h-[70px] bg-[#1B1B1B]
         fixed">
@@ -29,7 +31,7 @@ export default function HeaderA(){
                 <Image src={chevronDown} width={25} alt={"Chevdown"} className="ml-1 mt-2"/>
             </div>
         </div>
-        <div className=" max-lg:ml-auto mr-2 max-sm:hidden">
+        <div className=" max-lg:ml-auto mr-2 max-sm:hidden cursor-pointer" onClick={()=>router.push('/dashboard/setting')}>
             <div className="flex flex-row items-center">
                 <Image src={man1} width={25} alt={"man"}/>
                 <p className="text-[#717171] text-sm ml-1">

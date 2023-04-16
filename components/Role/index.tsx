@@ -143,7 +143,13 @@ export default function Role({curPage=1}:RoleProps){
                     </div>
                     <div className="mt-3 bg-[#1C1C1C] w-full flex md:justify-between max-md:flex-col relative">
                         <div className="w-[50%] max-md:w-full px-2 py-3">
-                          
+                            {/* <p className="text-[#BCBBB9] text-base">Select team member roles</p>
+                            <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
+                                 border-[#717171] border-solid border-[1px] mt-2">
+                                <Image src={searchImg} width={16} alt={"search"}/>
+                                <input type="text" className="px-4 text-[#717171] text-sm bg-[#161616] rounded-sm
+                                focus:outline-none font-medium placeholder:text-[#717171] placeholder:text-sm max-sm:w-full" placeholder="Search by role..."/>
+                            </div> */}
                             <p className="text-[#BCBBB9] text-base mt-3">Select team member roles</p>
                             <div className="bg-[#161616] px-4 py-2 flex flex-row items-center rounded-lg
                                  border-[#717171] border-solid border-[1px] mt-2">
