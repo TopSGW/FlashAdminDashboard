@@ -105,7 +105,7 @@ export default function Statistics(){
                         </div>
                     </div>
                     <div className="mt-5 flex max-[1172px]:flex-wrap max-[1172px]:justify-center min-[1172px]:justify-between px-8 max-sm:px-3">
-                        <div className="w-[32%] min-w-[296px] max-[1171px]:m-1 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
+                        <div className="w-[32%] max-sm:w-full min-w-[296px] max-[1171px]:m-1 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
                             <div className="flex justify-between items-center">
                                 <p className="text-[#BCBBB9] text-base">Total Sales</p>
                                 <Image src={baselineMore} width={24} alt={""}/>
@@ -117,7 +117,7 @@ export default function Statistics(){
                                 <Image src={totalSaleschart} width={100} alt={""} className="ml-auto mr-0 mb-1"/>
                             </div>
                         </div>
-                        <div className="w-[32%] min-w-[296px] max-[1171px]:m-1 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
+                        <div className="w-[32%] max-sm:w-full min-w-[296px] max-[1171px]:m-1 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
                             <div className="flex justify-between items-center">
                                 <p className="text-[#BCBBB9] text-base">Total Order</p>
                                 <Image src={baselineMore} width={24} alt={""}/>
@@ -129,7 +129,7 @@ export default function Statistics(){
                                 <Image src={totalOrderchart} width={100} alt={""} className="ml-auto mr-0 mb-1"/>
                             </div>
                         </div>                    
-                        <div className="w-[32%] min-w-[296px] max-[1171px]:m-1 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
+                        <div className="w-[32%] max-sm:w-full min-w-[296px] max-[1171px]:m-1 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
                             <div className="flex justify-between items-center">
                                 <p className="text-[#BCBBB9] text-base">Total Profit</p>
                                 <Image src={baselineMore} width={24} alt={""}/>

@@ -47,12 +47,19 @@ export default function Validate(){
                                 </div>
                                 <div className='mt-12'>
                                     <div className='flex min-[360px]:justify-between overflow-y-auto'>
-                                        <div className='min-w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]'></div>
-                                        <div className='min-w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]'></div>
-                                        <div className='min-w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]'></div>
-                                        <div className='min-w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]'></div>
-                                        <div className='min-w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]'></div>
-                                        <div className='min-w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]'></div>
+                                        <input className='min-w-[50px] w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]
+                                             focus:outline-none text-[40px] text-center text-white' maxLength={1}></input>
+                                        <input className='min-w-[50px] w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]
+                                             focus:outline-none text-[40px] text-center text-white' maxLength={1}></input>
+                                        <input className='min-w-[50px] w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]
+                                             focus:outline-none text-[40px] text-center text-white' maxLength={1}></input>
+                                        <input className='min-w-[50px] w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]
+                                             focus:outline-none text-[40px] text-center text-white' maxLength={1}></input>
+                                        <input className='min-w-[50px] w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]
+                                             focus:outline-none text-[40px] text-center text-white' maxLength={1}></input>
+                                        <input className='min-w-[50px] w-[50px] max-[359px]:m-1 h-[60px] sm:w-[90px] sm:h-[110px] rounded-md bg-[#252525]
+                                             focus:outline-none text-[40px] text-center text-white' maxLength={1}></input>
+                                        
                                     </div>
                                 </div>
                                 <h3 className='mt-3 text-[#717171] text-center text-[12px]'> Code expires in 5:00</h3>
