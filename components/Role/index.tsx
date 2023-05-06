@@ -76,6 +76,7 @@ export default function Role({curPage=1}:RoleProps){
     
     const [open, setOpen] = useState(false);
     const [email,setEmail] = useState<string>("");
+    const [password,setPassword] = useState<string>("123");
     const [roleDes,setRoleDes] = useState<string>("");
     const [search,setSearch] =useState("");
     const router = useRouter();
@@ -88,11 +89,12 @@ export default function Role({curPage=1}:RoleProps){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleCreateAdmin= ()=>{
-        if(email === "" || roleDes === "" || curRole ===null){
+
+        if(email === "" || password ==="" || roleDes === "" || curRole ===null){
             toast.warn("Please input information correctly");
             return;
         }
-        createAdmin.mutate({email:email,roleDescription:roleDes,role:curRole});
+        createAdmin.mutate({email:email,roleDescription:roleDes,role:curRole,password});
     }
 
     const totalPage = data?data.totalPage:1
@@ -101,6 +103,7 @@ export default function Role({curPage=1}:RoleProps){
     if(!isLoading && !isPageExist){
 		toast.error("page dotn exist");
 	}
+   
 	const tableData =(!isLoading)?(!isLoading &&!isPageExist)?[]:data?.users:[];
     const T_data = tableData.map((item:AdminsType)=>{
             return {
@@ -192,7 +195,7 @@ export default function Role({curPage=1}:RoleProps){
                             <p className="text-[#BCBBB9] text-base">Role Description</p>
                             <textarea className="text-sm placeholder:text-[#717171] mt-4 rounded-md p-4 text-[#717171] focus:outline-none
                                 placeholder:text-sm bg-[#161616] border-[2px] border-solid border-[#717171] w-full min-h-[300px]" 
-                                placeholder="Search by role...">
+                                placeholder="Search by role..." value={roleDes} onChange={(e)=>setRoleDes(e.target.value)}>
                             </textarea>
                             <div className="md:bottom-12 flex items-center max-[318px]:justify-center  min-[318px]:flex-row max-[318px]:flex-col  max-md:w-full md:w-[50%] md:absolute">
                                 <div className="min-[318px]:ml-auto">

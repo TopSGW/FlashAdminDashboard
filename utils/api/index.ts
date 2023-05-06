@@ -58,10 +58,10 @@ apiClient.interceptors.response.use(
 			await refreshToken();
 			return apiClient(originalRequest);
 		}
-		console.log(location.toLocaleString());
-		if (error?.response?.status === 401 && location.pathname !== '/') {
-			location.href = '/';
-		}
+
+		// if (error?.response?.status === 401 && location.pathname !== '/') {
+		// 	location.href = '/';
+		// }
 		return Promise.reject(error);
 	}
 );

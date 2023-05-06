@@ -25,8 +25,25 @@ export function useLogin() {
 		onError: (r) => onQueryError(r),
 	});
 }
+export function useLogout(){
+	const router = useRouter();
+	return useMutation(logOut,{
+		onSuccess: (response) => {
+			if (response.success) {
+				router.push('/');
+			} else {
+				toast.warn(response.message);
+			}
+		},
+		onError: (r) => onQueryError(r),
+	})
+}
 export function login(payload: LoginPayload) {
 	return apiClient
 		.post(config.auth.signIn, payload)
 		.then((response) => response.data);
+}
+
+export function logOut(){
+	return apiClient.post(config.auth.logout).then((res)=>res.data)
 }

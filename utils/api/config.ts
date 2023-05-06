@@ -13,6 +13,25 @@ const config = {
 		disableOTP: 'disableOTP',
 		logout: 'logOut',
 	},
+	overview: {
+		getTotalInfo: 'getTotalInfo',
+		getRecentActivity: 'getRecentActivity',
+		getReven: 'getRevenueAndOrders',
+	},
+	statistic: {
+		getTotalInfoBetween: 'getTotalInfoBetween',
+		getRevenBetween: 'getRevenueAndOrdersBetween',
+		getTotalProducts: 'getTotalProducts',
+	},
+	client: {
+		getClient: 'getClientInformation',
+	},
+	bill: {
+		getInvoice: 'getInvoice',
+	},
+	transaction: {
+		netWorth: 'getTotalNetWorth',
+	},
 };
 
 export function getKeyPath<T extends object, V>(
@@ -44,6 +63,16 @@ export function getUrl(_url: string) {
 		switch (path[0]) {
 			case 'auth':
 				return _url;
+			case 'overview':
+				return 'flashTr/overview/' + _url;
+			case 'client':
+				return 'flashTr/client/' + _url;
+			case 'bill':
+				return 'flashTr/bill/' + _url;
+			case 'transaction':
+				return 'flashTr/transaction/' + _url;
+			case 'statistic':
+				return 'flashTr/statistics/' + _url;
 		}
 	}
 }

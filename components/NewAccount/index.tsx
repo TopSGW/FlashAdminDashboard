@@ -9,17 +9,16 @@ import { Pagination } from '@mui/material';
 import useRole from '@hooks/useRole';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setorders } from "../../utils/slice/ordersSlice";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setorders } from '../../utils/slice/ordersSlice';
 export type NewAccountProps = {
 	curPage: number;
 };
 export default function NewAccount({ curPage = 1 }: NewAccountProps) {
-	
 	const router = useRouter();
 	// const {isLoading,data} = useRole({ pagination: 10, curpage: curPage, search: '' });
-	
+
 	const handlePaginationChange = (e: any, page: number) => {
 		router.push('/dashboard/newaccount/' + page);
 	};
@@ -30,11 +29,11 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 	// 	toast.error("page dotn exist");
 	// }
 	// const tableData = (!isLoading &&!isPageExist)?[]:data?.users;
-	
+
 	const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(setorders(7));
-    },[dispatch])  
+	useEffect(() => {
+		dispatch(setorders(7));
+	}, [dispatch]);
 	const tableData = [
 		{
 			section: 'No KYC',
@@ -144,7 +143,6 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 									</tr>
 								</thead>
 								<tbody>
-									
 									{tableData.map((data: any, index) => {
 										return (
 											<tr key={index}>
@@ -179,11 +177,10 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 							<div className='w-full flex justify-center mt-2'>
 								<Pagination
 									count={4}
-									color='flashPrimary'
+									color='primary'
 									shape='rounded'
 									// defaultPage={curPage ? curPage : 1}
 									onChange={handlePaginationChange}
-									
 								/>
 							</div>
 						</div>
