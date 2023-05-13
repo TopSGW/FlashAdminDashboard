@@ -14,7 +14,7 @@ export default function Item(props:any){
             case "All Transactions":router.push('/dashboard/allTransaction'); break;
             case "Create Invoice":router.push('/dashboard/createInvoice'); break;
             case "Role":router.push('/dashboard/role');break;
-            case "New Account":router.push('/dashboard/newaccount');break;
+            case "New Account":router.push('/dashboard/newaccount/1');break;
             case "Notification":router.push('/dashboard/notification');break;
             case "Client History":router.push('/dashboard/clientHistory');break;            
         }
