@@ -18,7 +18,7 @@ import roleSvg from '../assets/image/sidebar/role.svg';
 import newclientB from '../assets/image/sidebar/newclient.svg';
 import newclientW from '../assets/image/sidebar/newclientW.svg'
 
-import menubarcloseSvg from '../assets/image/header/menubarClose.svg'
+import menubarcloseSvg from '../assets/image/header/menubarclose.svg'
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { selectordersState } from '@utils/slice/ordersSlice';

@@ -19,7 +19,7 @@ import baselineMore from '../assets/image/statistics/baselinemore.png';
 import totalSaleschart from '../assets/image/statistics/totalSaleschart.png';
 import totalProfitchart from '../assets/image/statistics/totalProfitchart.png';
 import totalOrderchart from '../assets/image/statistics/totalOrderchart.png';
-import growthSvg from '../assets/image/statistics/Growth.svg';
+import growthSvg from '../assets/image/statistics/growth.svg';
 import guy1 from '../assets/image/guys/guy1.png';
 import {
     Chart as ChartJS,
