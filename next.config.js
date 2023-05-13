@@ -2,6 +2,7 @@
  * @format
  * @type {import('next').NextConfig}
  */
+const withTM = require('next-transpile-modules')(['@amcharts/amcharts5'])
 
 const nextConfig = {
 	reactStrictMode: true,
@@ -26,3 +27,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+module.exports = withTM({});

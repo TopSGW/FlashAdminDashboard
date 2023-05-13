@@ -19,6 +19,7 @@ import baselineMore from '../assets/image/statistics/baselinemore.png';
 import totalSaleschart from '../assets/image/statistics/totalSaleschart.png';
 import totalProfitchart from '../assets/image/statistics/totalProfitchart.png';
 import totalOrderchart from '../assets/image/statistics/totalOrderchart.png';
+import growthSvg from '../assets/image/statistics/Growth.svg';
 import guy1 from '../assets/image/guys/guy1.png';
 import {
     Chart as ChartJS,
@@ -79,6 +80,13 @@ import Sidebar from "../Sidebar/Sidebar";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setorders } from "../../utils/slice/ordersSlice";
+import dynamic from "next/dynamic";
+
+const StatisticsLineChat = dynamic(()=> import('./statisticsLineChart'), {ssr: false})
+const StatisticsMapChart = dynamic(() => import('./statisticsMapChart'), {ssr: false})
+const StatisticsDoghnut = dynamic(() => import('./statisticsDoughnut'), {ssr: false})
+const StatisticsColumnChart = dynamic(() => import('./statisticsColumn'), {ssr: false})
+
 export default function Statistics(){
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -264,6 +272,39 @@ export default function Statistics(){
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div className="mt-5 flex max-[900px]:flex-col min-[900px]:justify-between px-8 max-sm:px-3 ">
+                        <div className="w-[48%] max-[900px]:w-full rounded-lg bg-white px-2 pb-2 pt-4">
+                            <h3 className="text-black text-sm sm:text-base lg:text-lg">Sales Statistics</h3>
+                            <StatisticsLineChat chartId= {"StatisticsLineChat"}/>
+                        </div>
+                        <div className="w-[48%] max-[900px]:w-full rounded-lg bg-white px-2 pb-2 pt-4 max-[900px]:mt-5">
+                            <h3 className="text-black text-sm sm:text-base lg:text-lg">Customer by country</h3>
+                            <StatisticsMapChart/>
+                        </div>
+                    </div>
+                    <div className="mt-5 flex max-[900px]:flex-col min-[900px]:justify-between px-8 max-sm:px-3">
+                        <div className="w-[30%] max-[900px]:w-full rounded-lg px-4 pb-6 pt-4 bg-[#1B1B1B]">
+                            <h3 className="font-bold text-white text-[18px]">Sales Goal</h3>
+                            <div className="flex flex-row items-center">
+                                <h4 className="text-[18px] text-[#BCBBB9] font-medium">$100.00 / <span className="text-[#717171]">$150.00</span></h4>
+                                <h4 className="text-[15px] ml-auto mr-0 text-[#717171]">Yearly target</h4>
+                            </div>
+                            <div className="w-full rounded-full h-[8px] bg-[#717171] mt-3">
+                                <div className="w-[67%] bg-[#FBBF04] rounded-full h-[8px]"></div>
+                            </div>
+                            <div className="flex flex-row items-center mt-4">
+                                <Image src={growthSvg} alt={""}/>
+                                <h3 className="text-[#BCBBB9] ml-2 text-[14px]">19% <span className="text-[#717171]">vs last year</span></h3>
+                            </div>
+                            <div className=" my-10 bg-[#252525] h-[1px] w-full"></div>
+                            <h3 className="text-[18px] text-white font-bold">Brand Sales</h3>
+                            <StatisticsDoghnut chartID = {"statisticsdoughnut"}/>
+                        </div>
+                        <div className="w-[68%] max-[900px]:w-full rounded-lg bg-white px-4 pb-2 pt-4 max-[900px]:mt-5">
+                            <h3 className="text-lg text-black font-bold">Site Visitors</h3>
+                            <StatisticsColumnChart chartId = {"statisticsSiteVistors"}/>
                         </div>
                     </div>
                     <div className="mt-3 px-8 max-lg:hidden">

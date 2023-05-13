@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setOverview_PaginationValue } from "@utils/slice/overviewSlice";
 import { setOverview_SeeAllViewValue } from "@utils/slice/overviewSlice";
 import { Overview_paginationState } from "@utils/slice/overviewSlice";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -23,6 +24,7 @@ import {
     ArcElement
   } from 'chart.js';
 import { Doughnut, Line } from "react-chartjs-2";
+import dynamic from "next/dynamic";
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -70,6 +72,9 @@ const data = {
       hoverOffset: 4
     }]
   };
+
+const OverviewLineChart = dynamic(() => import('./overviewLineChart'), { ssr: false });
+const OverviewDoughnut = dynamic(()=> import('./overviewDoughnut'), {ssr: false})
 
 export default function OverviewMainpart(){
     const dispatch = useDispatch()
@@ -126,13 +131,16 @@ export default function OverviewMainpart(){
             </div>
         </div>
         <div className="mt-6 flex md:justify-between max-md:flex-col max-md:justify-center">
-            <div className="w-[70%] max-md:w-full bg-[#1B1B1B] px-8 rounded-lg py-3">
-                <h1 className="text-white text-center text-lg">Revenue vs Orders</h1>
-                <Line data={data}/>
+            <div className="w-[70%] max-md:w-full bg-white px-8 rounded-lg py-3">   
+            {/* //bg-[#1B1B1B] */}
+                <h1 className="text-black text-center text-lg font-semibold">Revenue vs Orders</h1>
+                {/* <Line data={data}/> */}
+                <OverviewLineChart chartId = {"OverviewLineChart"}/>
             </div>
-            <div className="w-[26%] max-md:w-full max-md:mt-4 bg-[#1B1B1B] rounded-lg p-3
-                flex justify-center">
-                <Doughnut data={Doughtnutdata}/>
+            <div className="w-[26%] max-md:w-full max-md:mt-4 bg-white rounded-lg p-3
+                ">
+                <h1 className="text-black text-center text-lg font-semibold">Sales by Category</h1>
+                <OverviewDoughnut chartID={"OverviewDoughnut"}/>
             </div>
         </div>
         <div className="mt-3 flex xl:justify-between max-xl:flex-col">

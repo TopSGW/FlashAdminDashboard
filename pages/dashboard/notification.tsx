@@ -6,6 +6,7 @@ export default function Notification(){
             <HeaderV/>
             <main>
                 <DashboardNotification/>
+                <div className=" w-screen h-[100vh] z-[-1] bg-[#141414] fixed"></div>
             </main>
         </div>
     )

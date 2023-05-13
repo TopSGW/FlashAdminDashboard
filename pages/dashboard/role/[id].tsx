@@ -14,6 +14,7 @@ export default function Role(){
             <HeaderV/>
             <main>
                 <DashboardRole curPage={id ? parseInt(id) : 1} />
+                <div className=" w-screen h-[100vh] z-[-1] bg-[#141414] fixed"></div>
             </main>   
         </div>
     )

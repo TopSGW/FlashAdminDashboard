@@ -6,6 +6,7 @@ export default function BillingInvoice(){
             <HeaderV/>
             <main>
                 <DashboardBillingInvoice/>
+                <div className=" w-screen h-[100vh] z-[-1] bg-[#141414] fixed"></div>
             </main>
         </div>
     )

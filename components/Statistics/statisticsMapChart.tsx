@@ -1,0 +1,34 @@
+import { Chart } from "react-google-charts";
+
+export const Mapdata = [
+    ["Country", "Popularity"],
+    ["Germany", 200],
+    ["United States", 300],
+    ["Brazil", 400],
+    ["Canada", 500],
+    ["France", 600],
+    ["RU", 700],
+  ];
+export default function StatisticsMapChart(){
+    return(
+        <Chart
+        chartEvents={[
+          {
+            eventName: "select",
+            callback: ({ chartWrapper }) => {
+              const chart = chartWrapper.getChart();
+              const selection = chart.getSelection();
+              if (selection.length === 0) return;
+              const region = Mapdata[selection[0].row + 1];
+              console.log("Selected : " + region);
+            },
+          },
+        ]}
+        chartType="GeoChart"
+        width="100%"
+        height={"500px"}
+        data={Mapdata}
+        className="h-[300px] sm:h-[500px]"
+      />
+    )
+}

@@ -23,12 +23,14 @@ import userSlice from './slice/userSlice';
 import ordersSlice from './slice/ordersSlice';
 import overviewSlice from './slice/overviewSlice';
 import allTransactionSlice from './slice/allTransactionSlice';
+import menubarSlice from './slice/menubarSlice';
 
 const rootReducer = combineReducers({
 	orders: ordersSlice,
 	user: userSlice,
 	overview: overviewSlice,
-	allTransaction: allTransactionSlice
+	allTransaction: allTransactionSlice,
+	menubar: menubarSlice
 });
 const makeConfiguredStore = () =>
 	configureStore({
@@ -44,7 +46,7 @@ export const makeStore = () => {
 
 		const persistConfig = {
 			key: 'nextjs',
-			whitelist: ['orders','overview','allTransaction'], // make sure it does not clash with server keys
+			whitelist: ['orders','overview','allTransaction', 'menubar'], // make sure it does not clash with server keys
 			storage,
 		};
 
