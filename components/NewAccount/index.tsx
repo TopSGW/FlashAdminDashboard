@@ -179,7 +179,7 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 									count={4}
 									color='primary'
 									shape='rounded'
-									// defaultPage={curPage ? curPage : 1}
+									defaultPage={curPage ? curPage : 1}
 									onChange={handlePaginationChange}
 								/>
 							</div>
