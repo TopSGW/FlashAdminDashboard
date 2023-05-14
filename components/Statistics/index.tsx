@@ -156,7 +156,7 @@ export default function Statistics(){
                         </div>
                         <div className="w-[32%] max-[900px]:w-full max-[900px]:mt-5 rounded-lg bg-[#1B1B1B] px-4">
                             <div className="mt-4 flex justify-between items-center">
-                                <h1 className="text-white font-bold text-lg">Total Products</h1>
+                                <h1 className="text-white font-bold text-lg">Top Pair</h1>
                                 <Image src={baselineMore} width={20} alt={""}/>
                             </div>
                             <table className="mt-1 w-full">
@@ -164,9 +164,6 @@ export default function Statistics(){
                                     <tr>
                                         <th className="py-2 text-[#717171] text-left">
                                             Product
-                                        </th>
-                                        <th className="py-2 text-[#717171] text-left max-sm:hidden">
-                                            ID
                                         </th>
                                         <th className="py-2 text-[#717171] text-right">
                                             Sold
@@ -179,12 +176,9 @@ export default function Statistics(){
                                             <div className="flex flex-row items-center">
                                                 <Image src={guy1} width={20} alt={""}/>
                                                 <p className="text-white text-sm ml-2">
-                                                    Airpods Gen 3
+                                                    USD/BTC
                                                 </p>
                                             </div>
-                                        </td>
-                                        <td className="py-2 text-white text-sm max-sm:hidden">
-                                            #1223
                                         </td>
                                         <td className="py-2 text-white text-sm text-right">
                                             1,602
@@ -195,12 +189,9 @@ export default function Statistics(){
                                             <div className="flex flex-row items-center">
                                                 <Image src={guy1} width={20} alt={""}/>
                                                 <p className="text-white text-sm ml-2">
-                                                    Airpods Gen 3
+                                                    USD/BTC
                                                 </p>
                                             </div>
-                                        </td>
-                                        <td className="py-2 text-white text-sm max-sm:hidden">
-                                            #1223
                                         </td>
                                         <td className="py-2 text-white text-sm text-right">
                                             1,602
@@ -211,12 +202,9 @@ export default function Statistics(){
                                             <div className="flex flex-row items-center">
                                                 <Image src={guy1} width={20} alt={""}/>
                                                 <p className="text-white text-sm ml-2">
-                                                    Airpods Gen 3
+                                                    USD/BTC
                                                 </p>
                                             </div>
-                                        </td>
-                                        <td className="py-2 text-white text-sm max-sm:hidden">
-                                            #1223
                                         </td>
                                         <td className="py-2 text-white text-sm text-right">
                                             1,602
@@ -227,12 +215,9 @@ export default function Statistics(){
                                             <div className="flex flex-row items-center">
                                                 <Image src={guy1} width={20} alt={""}/>
                                                 <p className="text-white text-sm ml-2">
-                                                    Airpods Gen 3
+                                                    USD/BTC
                                                 </p>
                                             </div>
-                                        </td>
-                                        <td className="py-2 text-white text-sm max-sm:hidden">
-                                            #1223
                                         </td>
                                         <td className="py-2 text-white text-sm text-right">
                                             1,602
@@ -243,12 +228,9 @@ export default function Statistics(){
                                             <div className="flex flex-row items-center">
                                                 <Image src={guy1} width={20} alt={""}/> 
                                                 <p className="text-white text-sm ml-2">
-                                                    Airpods Gen 3
+                                                USD/BTC
                                                 </p>
                                             </div>
-                                        </td>
-                                        <td className="py-2 text-white text-sm max-sm:hidden">
-                                            #1223
                                         </td>
                                         <td className="py-2 text-white text-sm text-right">
                                             1,602
@@ -259,12 +241,9 @@ export default function Statistics(){
                                             <div className="flex flex-row items-center">
                                                 <Image src={guy1} width={20} alt={""}/>
                                                 <p className="text-white text-sm ml-2">
-                                                    Airpods Gen 3
+                                                USD/BTC
                                                 </p>
                                             </div>
-                                        </td>
-                                        <td className="py-2 text-white text-sm max-sm:hidden">
-                                            #1223
                                         </td>
                                         <td className="py-2 text-white text-sm text-right">
                                             1,602
