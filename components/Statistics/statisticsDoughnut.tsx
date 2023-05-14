@@ -57,7 +57,6 @@ export default function StatisticsDoghnutChart(props:any){
           // Play initial series animation
           // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
           series.appear(1000, 100);
-          console.log(series.get("colors"));
 
           return () => {root.dispose(); };
     },[chartID])
