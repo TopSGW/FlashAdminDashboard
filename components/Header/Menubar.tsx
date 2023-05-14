@@ -6,14 +6,6 @@ import supportEmail from '../assets/image/sidebar/supportEmail.png';
 import createInvoice from '../assets/image/sidebar/createInvoice.png';
 import materialsymbol from '../assets/image/sidebar/material-symbols_dashboard.png';
 import notification from '../assets/image/sidebar/notification.png';
-import loginImg from '../assets/image/sidebar/login.png';
-import rolesidebarImg from '../assets/image/sidebar/rolesidebar.png';
-import materialSvg from '../assets/image/sidebar/materialsymbol_dashboard.svg';
-import createInvoiceSvg from '../assets/image/sidebar/createInvoice.svg';
-import buillingInvoiceSvg from '../assets/image/sidebar/billingInvoice.svg'
-import createDashboardSvg from '../assets/image/sidebar/createDashboard.svg';
-import allTransactionSvg from '../assets/image/sidebar/allTransaction.svg';
-import statisticsSvg from '../assets/image/sidebar/statistics.svg';
 import roleSvg from '../assets/image/sidebar/role.svg';
 import newclientB from '../assets/image/sidebar/newclient.svg';
 import newclientW from '../assets/image/sidebar/newclientW.svg'
@@ -35,31 +27,31 @@ export default function Menubar(props:any){
             style={{right:`${props.visible == true ? '0px': '-330px'}`, boxShadow:'rgb(104 98 98 / 30%) -5px 0px 34px', transition: 'right 1s'}}>
             <Image src={menubarcloseSvg} alt="MenubarClose" onClick={()=>dispatch(setmenubarState(false))}/>
             <div className='flex flex-col w-full mt-4'>
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[0] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=>router.push('/dashboard/overview')}>
+                <div className={` cursor-pointer flex flex-row items-center pl-4 py-2 ${order[0] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=>router.push('/dashboard/overview')}>
                     <Image src={materialsymbol} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Overview</h3>
                 </div>
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[1] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/statistics')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[1] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/statistics')}>
                     <Image src={statics} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Statistics</h3>
                 </div>
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[3] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/billingInvoice')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[3] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/billingInvoice')}>
                     <Image src={billingInvoice} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Billing & Invoices</h3>
                 </div>
-                <div className={`flex flex-row items-center pl-4 py-2`}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2`} onClick={()=> router.push('/dashboard/clientHistory')}>
                     <Image src={newclientW} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Client History</h3>
                 </div>
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[7] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/newaccount')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[7] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/newaccount')}>
                     <Image src={newclientW} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>New Account</h3>
                 </div>
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[4] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/allTransaction')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[4] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/allTransaction')}>
                     <Image src={allTransaction} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>All Transactions</h3>
                 </div>
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[2] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=>router.push('/dashboard/clientDashboard')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[2] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=>router.push('/dashboard/clientDashboard')}>
                     <Image src={clientDashboard} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Client Dashboard</h3>
                 </div>
@@ -67,11 +59,11 @@ export default function Menubar(props:any){
                     <Image src={createInvoice} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Create Invoice</h3>
                 </div> */}
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[6] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/role')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[6] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/role')}>
                     <Image src={roleSvg} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Role</h3>
                 </div>
-                <div className={`flex flex-row items-center pl-4 py-2 ${order[8] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/notification')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[8] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/notification')}>
                     <Image src={notification} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Notification</h3>
                 </div>

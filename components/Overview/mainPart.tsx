@@ -81,7 +81,7 @@ export default function OverviewMainpart(){
     return(
     <div className="pt-5 px-5 mt-4">
         <div className="flex max-[801px]:flex-wrap max-[801px]:justify-center min-[801px]:justify-between">
-            <div className="w-[24%] max-[480px]:w-[90%] min-w-[181px] max-[800px]:m-2 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
+            <div className="w-[24%] max-[480px]:w-[100%] min-w-[181px] max-[800px]:m-2 max-sm:mx-0 rounded-md p-4 max-sm:w-full max-[1085px]:p-3 bg-[#1B1B1B]">
                 <div className="flex justify-between items-center">
                     <p className="text-[#BCBBB9] text-base">Total Sales</p>
                     <Image src={totalSales} width={24} alt={""}/>
@@ -93,7 +93,7 @@ export default function OverviewMainpart(){
                     <p className="text-[#717171] ml-2 max-[1085px]:ml-1 text-sm">+18.4k this week</p>
                 </div>
             </div>
-            <div className="w-[24%] max-[480px]:w-[90%] min-w-[181px] max-[800px]:m-2 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
+            <div className="w-[24%] max-[480px]:w-[100%] min-w-[181px] max-[800px]:m-2 max-sm:mx-0 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
                 <div className="flex justify-between items-center">
                     <p className="text-[#BCBBB9] text-base">Visitors</p>
                     <Image src={visitorsImg} width={24} alt={""}/>
@@ -105,7 +105,7 @@ export default function OverviewMainpart(){
                     <p className="text-[#717171] ml-2 max-[1085px]:ml-1 text-sm">+15k this week</p>
                 </div>
             </div>
-            <div className="w-[24%] max-[480px]:w-[90%] min-w-[181px] max-[800px]:m-2 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
+            <div className="w-[24%] max-[480px]:w-[100%] min-w-[181px] max-[800px]:m-2 max-sm:mx-0 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
                 <div className="flex justify-between items-center">
                     <p className="text-[#BCBBB9] text-base">Total Orders</p>
                     <Image src={totalOrdersImg} width={24} alt={""}/>
@@ -117,7 +117,7 @@ export default function OverviewMainpart(){
                     <p className="text-[#717171] ml-2 max-[1085px]:ml-1 text-sm">+8.4k this week</p>
                 </div>
             </div>
-            <div className="w-[24%] max-[480px]:w-[90%] min-w-[181px] max-[800px]:m-2 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
+            <div className="w-[24%] max-[480px]:w-[100%] min-w-[181px] max-[800px]:m-2 max-sm:mx-0 rounded-md p-4 max-[1085px]:p-3 bg-[#1B1B1B]">
                 <div className="flex justify-between items-center">
                     <p className="text-[#BCBBB9] text-base">Refunded</p>
                     <Image src={refundedImg} width={24} alt={""}/>
