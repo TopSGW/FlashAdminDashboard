@@ -81,7 +81,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setorders } from "../../utils/slice/ordersSlice";
 import dynamic from "next/dynamic";
-
+import TransferDropBox from '../Overview/transferDropbox'
 const StatisticsLineChat = dynamic(()=> import('./statisticsLineChart'), {ssr: false})
 const StatisticsMapChart = dynamic(() => import('./statisticsMapChart'), {ssr: false})
 const StatisticsDoghnut = dynamic(() => import('./statisticsDoughnut'), {ssr: false})
@@ -102,13 +102,13 @@ export default function Statistics(){
                         <h1 className="text-white text-2xl font-bold leading-3">
                             Statistics
                         </h1>
-                        <div className="max-sm:hidden">
+                        <div className="">
                             <div className="flex flex-row items-center">
-                                <input type="date" className="px-3 py-2 border-solid border-gray-500 border-2
+                                <div className="ml-auto mr-4 max-sm:mr-0">
+                                    <TransferDropBox/>
+                                </div>
+                                <input type="date" className="px-3 py-2 border-solid border-gray-500 border-2 max-sm:hidden
                                      bg-slate-500 rounded-md"/>        
-                                <button className="px-4 py-3 ml-2 bg-[#252525] text-center text-white tet-base rounded-md">
-                                    <p>Short</p>
-                                </button>
                             </div>
                         </div>
                     </div>
