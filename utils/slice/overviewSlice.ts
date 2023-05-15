@@ -19,8 +19,8 @@ export const overviewSlice = createSlice({
     name: 'overview',
     initialState,
     reducers:{
-        setOverview_SeeAllViewValue:(state) =>{
-            state.see_all_value = !state.see_all_value
+        setOverview_SeeAllViewValue:(state, action:PayloadAction<boolean>) =>{
+            state.see_all_value = action.payload
         },
         setOverview_PaginationValue:(state, action:PayloadAction<number>) =>{
             state.pagination_value = action.payload

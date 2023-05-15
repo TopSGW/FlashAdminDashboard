@@ -165,7 +165,7 @@ export default function OverviewMainpart(){
                 <div className="flex flex-row items-center">
                     <h1 className="text-white text-lg font-bold">Recent Activity</h1>
                     <button className="bg-[#FBBF04] ml-auto rounded-md px-4 py-2 text-base
-                        font-semibold" onClick={()=> dispatch(setOverview_SeeAllViewValue())}>See all</button>                                
+                        font-semibold" onClick={()=> dispatch(setOverview_SeeAllViewValue(true))}>See all</button>                                
                 </div>
                 <table className="mt-4 table-auto w-full">
                     <thead>

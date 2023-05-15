@@ -22,7 +22,7 @@ export default function SeeAllData() {
 					<button
 						className='bg-[#FBBF04] ml-auto rounded-md px-4 py-2 text-base
                             font-semibold'
-						onClick={() => dispatch(setOverview_SeeAllViewValue())}
+						onClick={() => dispatch(setOverview_SeeAllViewValue(false))}
 					>
 						See Overview
 					</button>
