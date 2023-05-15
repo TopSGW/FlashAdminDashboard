@@ -29,12 +29,57 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { setorders } from "../../utils/slice/ordersSlice";
 import { Pagination } from "@mui/material";
+import Checkbox from '@mui/material/Checkbox';
 export default function BillingInvoice(){
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(setorders(3));
     },[dispatch])
     const [tabselected, settabselected] = useState([true,false,false]);    
+    const Tdata = [
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"To paid", "Bstatus":"Pay"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"To paid", "Bstatus":"Pay"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+    ]
+    const PastData =[
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"To paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"To paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+        {'invoiceId':"#14586578", "StateDate":"05/02/2023", "EndDdate":"05/02/2023", "TotalShift":"2 shifts", "InvoiceAmount":"$500.00", "Status":"Paid", "Bstatus":"Cancel"},
+    ] 
+    const TdataColor:any = {
+        "To paid":{
+            bgColor:"rgba(248, 110, 81, 0.1)",
+            color: "#F86E51",
+            border: "1px solid #000000"
+        },
+        "Paid":{
+            color:"#55BA68",
+            bgColor: "rgba(85, 186, 104, 0.1)",
+            border: "1px solid #000000"
+        },
+        "Pay":{
+            color: "#141414",
+            bgColor:"#FBBF04",
+            border:"none"
+        },
+        "Cancel":{
+            color:"#141414",
+            bgColor: "#AC04FB",
+            border:"none"
+        }
+    }
     return(
         <div className="w-auto m-0 p-0">
             <HeaderA/>
@@ -68,59 +113,122 @@ export default function BillingInvoice(){
                             </p>
                         </div>
                         {tabselected[0] ? <>
-                            <table className="mt-4 w-full">
-                            <thead>
-                                <tr className="bg-[#1B1B1B] rounded-md">
-                                    <th className="py-2 rounded-l-md pl-2">
-                                        <div className="rounded-md border-[1px] border-solid border-white w-4 h-4"></div>
-                                    </th>
-                                    <th className="py-2 text-white">
-                                        Invoice ID
-                                    </th>
-                                    <th className="py-2 text-white max-md:hidden">
-                                        Start Date
-                                    </th>
-                                    <th className="py-2 text-white max-md:hidden">
-                                        End Date
-                                    </th>
-                                    <th className="py-2 text-white max-sm:hidden">
-                                        Total Shifts
-                                    </th>
-                                    <th className="py-2 text-white max-sm:hidden">
-                                        Invoice Amount
-                                    </th>
-                                    <th className="py-2 text-white">
-                                        Status
-                                    </th>
-                                    <th className="py-2 text-white max-sm:hidden">
-                                        Status
-                                    </th>
-                                    <th className="py-2 text-white max-sm:hidden">
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                                <TableItem/>
-                            </tbody>
-                        </table>
+                        <div className="mt-4 bg-[#1B1B1B] rounded-lg px-4 py-2 w-full flex flex-row items-center">
+                            <Checkbox/>
+                            <div className="w-[120px] pl-8">
+                                <h3 className="text-white font-semibold text-base">Invoice ID</h3>
+                            </div>
+                            <div className="w-[120px] pl-8 max-lg:hidden">
+                                <h3 className="text-white font-semibold text-base">Start Date</h3>
+                            </div>
+                            <div className="w-[120px] pl-8 max-lg:hidden">
+                                <h3 className="text-white font-semibold text-base">End Date</h3>
+                            </div>
+                            <div className="w-[150px] pl-8 max-md:hidden">
+                                <h3 className="text-white font-semibold text-base">Total Shifts</h3>
+                            </div>
+                            <div className="w-[150px] pl-8 max-xl:hidden">
+                                <h3 className="text-white font-semibold text-base">Invoice Amount</h3>
+                            </div>
+                            <div className="w-[130px] pl-8">
+                                <h3 className="text-white font-semibold text-base">Status</h3>
+                            </div>
+                        </div>
+                        {Tdata.map((item, index)=>{
+                            return <div key={index}  className="mt-4 bg-[#1B1B1B] rounded-lg px-4 py-2 w-full flex flex-row items-center">
+                                <Checkbox/>
+                                <div className="w-[120px] pl-8">
+                                    <h3 className="text-[#717171] text-base">{item.invoiceId}</h3>
+                                </div>
+                                <div className="w-[120px] pl-8 max-lg:hidden">
+                                    <h3 className="text-[#717171] text-base">{item.StateDate}</h3>
+                                </div>
+                                <div className="w-[120px] pl-8 max-lg:hidden">
+                                    <h3 className="text-[#717171] text-base">{item.EndDdate}</h3>
+                                </div>
+                                <div className="w-[150px] pl-8 max-md:hidden">
+                                    <h3 className="text-[#717171] text-base">{item.TotalShift}</h3>
+                                </div>
+                                <div className="w-[150px] pl-8 max-xl:hidden">
+                                    <h3 className="text-[#717171]  text-base">{item.InvoiceAmount}</h3>
+                                </div>
+                                <div className="w-[150px] pl-8">
+                                    <button className={`px-4 py-1 text-sm rounded-md`} style={{color:`${TdataColor[item.Status]?.color}`, 
+                                        backgroundColor:`${TdataColor[item.Status]?.bgColor}`, border:`${TdataColor[item.Status]?.border}`}}>
+                                        {item.Status}
+                                    </button>
+                                </div>
+                                <div className="w-[120px] ml-auto max-2xl:hidden">
+                                    <button className="px-4 py-1 text-sm rounded-md font-bold"
+                                        style={{color:`${TdataColor[item.Bstatus]?.color}`, 
+                                        backgroundColor:`${TdataColor[item.Bstatus]?.bgColor}`, border:`${TdataColor[item.Bstatus]?.border}`}}
+                                    >{item.Bstatus}</button>
+                                </div>
+                            </div>                        
+                        })}
                         <div className="mt-4 w-full flex justify-end pr-[10%]">
                             <Pagination count={6} color="secondary" shape="rounded"/>
                         </div>
                         </>: <></> }
-                        {tabselected[1]?<div className="w-full h-[700px]"></div> : <></>}
+                                {tabselected[1]?<>
+                                                <div className="mt-4 bg-[#1B1B1B] rounded-lg px-4 py-2 w-full flex flex-row items-center">
+                                                <Checkbox/>
+                                                <div className="w-[120px] pl-8">
+                                                    <h3 className="text-white font-semibold text-base">Invoice ID</h3>
+                                                </div>
+                                                <div className="w-[120px] pl-8 max-lg:hidden">
+                                                    <h3 className="text-white font-semibold text-base">Start Date</h3>
+                                                </div>
+                                                <div className="w-[120px] pl-8 max-lg:hidden">
+                                                    <h3 className="text-white font-semibold text-base">End Date</h3>
+                                                </div>
+                                                <div className="w-[150px] pl-8 max-md:hidden">
+                                                    <h3 className="text-white font-semibold text-base">Total Shifts</h3>
+                                                </div>
+                                                <div className="w-[150px] pl-8 max-xl:hidden">
+                                                    <h3 className="text-white font-semibold text-base">Invoice Amount</h3>
+                                                </div>
+                                                <div className="w-[130px] pl-8">
+                                                    <h3 className="text-white font-semibold text-base">Status</h3>
+                                                </div>
+                                            </div>
+                                            {PastData.map((item, index)=>{
+                                                return <div key={index}  className="mt-4 bg-[#1B1B1B] rounded-lg px-4 py-2 w-full flex flex-row items-center">
+                                                    <Checkbox/>
+                                                    <div className="w-[120px] pl-8">
+                                                        <h3 className="text-[#717171] text-base">{item.invoiceId}</h3>
+                                                    </div>
+                                                    <div className="w-[120px] pl-8 max-lg:hidden">
+                                                        <h3 className="text-[#717171] text-base">{item.StateDate}</h3>
+                                                    </div>
+                                                    <div className="w-[120px] pl-8 max-lg:hidden">
+                                                        <h3 className="text-[#717171] text-base">{item.EndDdate}</h3>
+                                                    </div>
+                                                    <div className="w-[150px] pl-8 max-md:hidden">
+                                                        <h3 className="text-[#717171] text-base">{item.TotalShift}</h3>
+                                                    </div>
+                                                    <div className="w-[150px] pl-8 max-xl:hidden">
+                                                        <h3 className="text-[#717171]  text-base">{item.InvoiceAmount}</h3>
+                                                    </div>
+                                                    <div className="w-[150px] pl-8">
+                                                        <button className={`px-4 py-1 text-sm rounded-md`} style={{color:`${TdataColor[item.Status]?.color}`, 
+                                                            backgroundColor:`${TdataColor[item.Status]?.bgColor}`, border:`${TdataColor[item.Status]?.border}`}}>
+                                                            {item.Status}
+                                                        </button>
+                                                    </div>
+                                                    <div className="w-[120px] ml-auto max-2xl:hidden">
+                                                        <button className="px-4 py-1 text-sm rounded-md font-bold"
+                                                            style={{color:`${TdataColor[item.Bstatus]?.color}`, 
+                                                            backgroundColor:`${TdataColor[item.Bstatus]?.bgColor}`, border:`${TdataColor[item.Bstatus]?.border}`}}
+                                                        >{item.Bstatus}</button>
+                                                    </div>
+                                                </div>                        
+                                            })}
+                                            <div className="mt-4 w-full flex justify-end pr-[10%]">
+                                                <Pagination count={6} color="secondary" shape="rounded"/>
+                                            </div>
+                                        </>
+                        : <></>}
                         {tabselected[2]?<div className="w-full h-[700px]"></div> : <></>}
                     </div>                                        
                 </div>
