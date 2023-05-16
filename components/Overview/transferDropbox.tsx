@@ -15,11 +15,10 @@ export default function TransferDropbox(){
         SetserviceState(false)
         if(str === "Flash Transfer"){
             dispatch(setOverview_SeeAllViewValue(false))
-            router.push('/dashboard/overview')
         }
         else{
             dispatch(setOverview_SeeAllViewValue(true))
-            router.push('/dashboard/overview')
+            // router.push('/dashboard/overview')
         }
     }
     const dispatch = useDispatch()
