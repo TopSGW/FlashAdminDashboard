@@ -4,31 +4,28 @@ import WorldSvg from '../assets/image/overview/website1.svg'
 import {useState} from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import { useDispatch, useSelector } from "react-redux"
-import { Overview_seeAllState, setOverview_SeeAllViewValue } from "@utils/slice/overviewSlice";
-import { useRouter } from "next/router"
-
+import { setOverviewAffiliatorState } from "@utils/slice/overviewAffiliator"
+import { OverviewAffiliator_State } from "@utils/slice/overviewAffiliator"
 export default function TransferDropbox(){
     const [serviceState, SetserviceState] = useState(false)
-    const SeeallState = useSelector(Overview_seeAllState)
-    const router = useRouter()
+    const dispatch = useDispatch()
+    const LabelStae = useSelector(OverviewAffiliator_State)
     const handleChange = (str:any) =>{
         SetserviceState(false)
         if(str === "Flash Transfer"){
-            dispatch(setOverview_SeeAllViewValue(false))
+            dispatch(setOverviewAffiliatorState(false))
         }
         else{
-            dispatch(setOverview_SeeAllViewValue(true))
-            // router.push('/dashboard/overview')
+            dispatch(setOverviewAffiliatorState(true))
         }
     }
-    const dispatch = useDispatch()
     return(
         <OutsideClickHandler onOutsideClick={()=>SetserviceState(false)}>
             <div className=" relative">
                 <button className='flex flex-row items-center rounded-md border-solid border-[#1B1B1B] border-[1px] px-4 py-2 
                 active:bg-[#333533] relative' onClick={()=> SetserviceState(!serviceState)}>
                     <Image src={WorldSvg} alt={""}/>
-                    <p className='ml-2 text-base text-[#717171]'>{SeeallState ? 'Flash affiliator' : 'Flash Transfer'}</p>
+                    <p className='ml-2 text-base text-[#717171]'>{LabelStae ? 'Flash affiliator' : 'Flash Transfer'}</p>
                     <Image src={ArrowDownSvg} alt={""} className='ml-2'/>
                 </button>
                 <div className='absolute w-full px-3 py-2 flex flex-col items-start bg-[#fff] top-[42px] left-0'
