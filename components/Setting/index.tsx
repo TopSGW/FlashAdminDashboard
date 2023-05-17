@@ -24,7 +24,7 @@ export default function Setting(){
                                 <h3 className="text-[#FBBF04] text-base ml-3 font-semibold">Account</h3>
                             </div>
                         </div>
-                        <div className="ml-auto w-[800px] max-[1429px]:mt-10 max-[1428px]:w-full rounded-lg bg-[#1B1B1B] p-3">
+                        <div className="ml-auto min-[1600px]:ml-[200px] w-[800px] max-[1429px]:mt-10 max-[1428px]:w-full rounded-lg bg-[#1B1B1B] p-3">
                             <h3 className="mt-1 text-white text-[17px]">Account</h3>
                             <p className="text-[#BCBBB9] mt-2 text-[12px]">This information will be displayed publicly so be careful what you share.</p>
                             <div className="mt-6 border-t-[1px] border-[#949494] border-solid"></div>
