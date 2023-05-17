@@ -43,7 +43,7 @@ export default function Menubar(props:any){
                     <Image src={newclientW} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Client History</h3>
                 </div>
-                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[7] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/newaccount')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[7] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/newaccount/1')}>
                     <Image src={newclientW} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>New Account</h3>
                 </div>
@@ -59,7 +59,7 @@ export default function Menubar(props:any){
                     <Image src={createInvoice} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Create Invoice</h3>
                 </div> */}
-                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[6] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/role')}>
+                <div className={`cursor-pointer flex flex-row items-center pl-4 py-2 ${order[6] ? 'bg-[#FBBF04]' : 'bg-[#141414]'}`} onClick={()=> router.push('/dashboard/role/1')}>
                     <Image src={roleSvg} alt="Overview"/>
                     <h3 className='ml-4 text-white text-[14px]'>Role</h3>
                 </div>
