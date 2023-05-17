@@ -27,7 +27,7 @@ export default function Dropbox(){
                 <button className='flex flex-row items-center rounded-md border-solid border-[#1B1B1B] border-[1px] px-4 py-2 
                 active:bg-[#333533] relative' onClick={()=> SetserviceState(!serviceState)}>
                     <Image src={WorldSvg} alt={""}/>
-                    <p className='ml-2 text-base text-[#717171]'>{modeState ? 'Flash affiliator' : 'Flash Transfer'}</p>
+                    <p className='ml-2 text-base text-[#717171]'>{modeState ? 'Flash Affiliates' : 'Flash Transfer'}</p>
                     <Image src={ArrowDownSvg} alt={""} className='ml-2'/>
                 </button>
                 <div className='absolute w-full px-3 py-2 flex flex-col items-start bg-[#fff] top-[42px] left-0'
@@ -35,8 +35,8 @@ export default function Dropbox(){
                             <div className="pl-2 w-full active:bg-[#f1f1f1]" onClick={()=>handleChange("Flash Transfer")}>
                                 <p className='text-base py-2 hover:text-blue-400 cursor-pointer active:bg-[#f1f1f1]' >Flash Transfer</p>
                             </div>
-                            <div className="pl-2 w-full active:bg-[#f1f1f1]" onClick={()=>handleChange("Flash affiliator")}>
-                                <p className='text-base py-2 hover:text-blue-400 cursor-pointer active:bg-[#f1f1f1]' >Flash affiliator</p>
+                            <div className="pl-2 w-full active:bg-[#f1f1f1]" onClick={()=>handleChange("Flash Affiliates")}>
+                                <p className='text-base py-2 hover:text-blue-400 cursor-pointer active:bg-[#f1f1f1]' >Flash Affiliates</p>
                             </div>
                 </div>
             </div>
