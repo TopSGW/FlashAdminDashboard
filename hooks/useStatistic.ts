@@ -1,8 +1,15 @@
 /** @format */
 
 import { useQuery } from '@tanstack/react-query';
-import { apiClient } from '@utils/api';
+import { apiClient, BackendResponse } from '@utils/api';
 import config from '@utils/api/config';
+import { TotalInfoProps } from 'components/Overview/type';
+import {
+	SalesGoalType,
+	TopAffiliatedType,
+	TopPairType,
+} from 'components/Statistics/type';
+
 import { toast } from 'react-toastify';
 
 export enum STATISTIC {
@@ -30,6 +37,24 @@ export type CommonInfoType = {
 	type: STATISTIC;
 	date: Date;
 };
+export type RevenueMonthData = {
+	month: number;
+	amount: number;
+};
+export interface CommonDataInterface extends BackendResponse {
+	data?: {
+		topInfo: {
+			totalSalse: TotalInfoProps;
+			visitors: TotalInfoProps;
+			totalOrders: TotalInfoProps;
+			refunded: TotalInfoProps;
+			totalEarned: TotalInfoProps;
+		};
+		revenue: RevenueMonthData;
+		topPair: TopAffiliatedType[] | TopPairType[];
+		salesGoal: SalesGoalType;
+	};
+}
 const endpoint = (url: string, ...args: Array<any>) =>
 	`${url}/${args.join('/')}`;
 export function useTopInfo(payload: CommonInfoType) {
@@ -111,7 +136,9 @@ export function fetchCustomerByCountry(payload: CustomerCountryType) {
 		.then((res) => res.data);
 }
 
-export function fetchCommonInfo(payload: CommonInfoType) {
+export function fetchCommonInfo(
+	payload: CommonInfoType
+): Promise<CommonDataInterface> {
 	return apiClient
 		.get(config.statistic.getCommonInfo, {
 			params: payload,
