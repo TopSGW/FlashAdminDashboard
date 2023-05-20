@@ -11,7 +11,8 @@ import { useEffect, useState } from 'react';
 
 import { setorders } from '../../utils/slice/ordersSlice';
 import { Overview_seeAllState } from '../../utils/slice/overviewSlice';
-import DropDownBox from './transferDropbox'
+import DropDownBox from './transferDropbox';
+
 export default function OverViewPart() {
 	const router = useRouter();
 	const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function OverViewPart() {
 	useEffect(() => {
 		dispatch(setorders(0));
 	}, [dispatch]);
+
 	return (
 		<div className='w-auto m-0 p-0'>
 			<HeaderA />
@@ -35,7 +37,7 @@ export default function OverViewPart() {
 							</p>
 						</div>
 						<div className='flex flex-row items-center sm:ml-auto sm:mr-5 max-sm:mt-3'>
-							<DropDownBox/>
+							<DropDownBox />
 						</div>
 					</div>
 					<div className='mt-4 border-t-[1px] border-[#717171] border-solid'></div>

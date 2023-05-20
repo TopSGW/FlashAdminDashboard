@@ -7,6 +7,9 @@ import { setOverview_SeeAllViewValue } from '@utils/slice/overviewSlice';
 import { Overview_paginationState } from '@utils/slice/overviewSlice';
 import { setOverview_PaginationValue } from '@utils/slice/overviewSlice';
 import { Pagination } from '@mui/material';
+import { TypeActivity, useActivity } from '@hooks/useOverview';
+import { STATISTIC } from '@hooks/useStatistic';
+import { toast } from 'react-toastify';
 
 export default function SeeAllData() {
 	const dispatch = useDispatch();
@@ -14,6 +17,20 @@ export default function SeeAllData() {
 	const handlePagination = (e: any, page: number) => {
 		dispatch(setOverview_PaginationValue(page));
 	};
+	const { data, error, isLoading } = useActivity({
+		type: STATISTIC.FLASH,
+		curPage: currentpage,
+		pagination: 10,
+	});
+	if (error) {
+		toast.error((error as any)?.message);
+	}
+
+	if (!error && !data?.success) {
+		toast.warn(data?.message);
+	}
+
+	const activityData = data?.data ? data.data.activity : [];
 	return (
 		<div className='pt-5 px-5 mt-1'>
 			<div className='w-full max-xl:mt-4 rounded-md bg-[#1B1B1B] px-4 pt-6 pb-4'>
@@ -38,294 +55,36 @@ export default function SeeAllData() {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#F86E51] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Pending
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								#465269
-							</td>
-							<td className='py-2'>
-								<div className='flex flex-row justify-center'>
-									<Image src={guy1} width={30} alt={''} />
-									<p className='text-[#8D8D93] text-base ml-2 self-center'>
-										Guy Hawkins
-									</p>
-								</div>
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-								13/11/2022
-							</td>
-							<td className='text-[#8D8D93] text-base text-center py-2'>$99</td>
-							<td className='py-2 max-sm:hidden'>
-								<div className='text-[#55BA68] flex justify-center'>
-									<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
-										Completed
-									</button>
-								</div>
-							</td>
-						</tr>
+						{activityData.map((item) => (
+							<tr>
+								<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
+									#{item.orderId}
+								</td>
+
+								<td className='py-2'>
+									<div className='flex flex-row justify-center'>
+										<Image src={guy1} width={30} alt={''} />
+										<p className='text-[#8D8D93] text-base ml-2 self-center'>
+											{item.customer.name}
+										</p>
+									</div>
+								</td>
+
+								<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
+									{item.date.toString()}
+								</td>
+								<td className='text-[#8D8D93] text-base text-center py-2'>
+									${item.amount}
+								</td>
+								<td className='py-2 max-sm:hidden'>
+									<div className='text-[#55BA68] flex justify-center'>
+										<button className='bg-[#141414] font-medium text-base px-4 py-1 rounded-md'>
+											{item.traking}
+										</button>
+									</div>
+								</td>
+							</tr>
+						))}
 					</tbody>
 				</table>
 				<div className='mt-4 flex justify-center'>

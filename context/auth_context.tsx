@@ -24,9 +24,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 	const [user, setUser] = useState<UserType | null>(null);
 	const router = useRouter();
 
-	useEffect(() => {
-		getUserAPI();
-	}, []);
+	// useEffect(() => {
+	// 	getUserAPI();
+	// }, []);
 
 	function getUserAPI() {
 		apiClient

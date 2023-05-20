@@ -15,22 +15,30 @@ const config = {
 	},
 	overview: {
 		getTotalInfo: 'getTotalInfo',
-		getRecentActivity: 'getRecentActivity',
-		getReven: 'getRevenueAndOrders',
+		getActivity: 'getActivity',
 	},
 	statistic: {
-		getTotalInfoBetween: 'getTotalInfoBetween',
-		getRevenBetween: 'getRevenueAndOrdersBetween',
-		getTotalProducts: 'getTotalProducts',
+		getTopInfo: 'getTopInfo',
+		getCustomerByCountry: 'getCustomerByCountry',
+		getCommonInfo: 'getCommonInfo',
+		siteVisitors: 'siteVisitors',
+		salesStatistic: 'salesStatistic',
 	},
 	client: {
-		getClient: 'getClientInformation',
+		getClientHistory: 'getClientHistory',
+		customer: 'customer',
 	},
 	bill: {
-		getInvoice: 'getInvoice',
+		getInvoices: 'getInvoices',
+		updateInvoice: 'updateInvoice',
 	},
 	transaction: {
-		netWorth: 'getTotalNetWorth',
+		getCommonInformation: 'getCommonInformation',
+		getOrders: 'getOrders',
+		getProfits: 'getProfits',
+	},
+	notification: {
+		getNotification: 'getNotification',
 	},
 };
 
@@ -64,15 +72,17 @@ export function getUrl(_url: string) {
 			case 'auth':
 				return _url;
 			case 'overview':
-				return 'flashTr/overview/' + _url;
+				return 'overview/' + _url;
 			case 'client':
-				return 'flashTr/client/' + _url;
+				return 'clientHis/' + _url;
 			case 'bill':
-				return 'flashTr/bill/' + _url;
+				return 'bill/' + _url;
 			case 'transaction':
-				return 'flashTr/transaction/' + _url;
+				return 'transaction/' + _url;
 			case 'statistic':
-				return 'flashTr/statistics/' + _url;
+				return 'statistics/' + _url;
+			case 'notification':
+				return 'notification/' + _url;
 		}
 	}
 }
