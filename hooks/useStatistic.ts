@@ -88,14 +88,10 @@ export function useCustomerByCountry(payload: CustomerCountryType) {
 }
 
 export function useCommonInfo(payload: CommonInfoType) {
-	const { isLoading, data } = useQuery(
+	return useQuery(
 		[endpoint('commonInfo', payload.type, payload.date.toDateString())],
 		() => fetchCommonInfo(payload)
 	);
-	if (data?.status === false) {
-		toast.error(data?.message);
-	}
-	return { isLoading, data: data?.data, message: data?.message };
 }
 
 export function useSiteVisitors(payload: TopInfoType) {
