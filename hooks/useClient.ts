@@ -5,6 +5,19 @@ import { apiClient, BackendResponse } from '@utils/api';
 import config from '@utils/api/config';
 import { onQueryError } from '@utils/errors/query-error';
 import { toast } from 'react-toastify';
+export enum KYC_STATUS {
+	NO_KYC = 'No KYC',
+	KYC_1 = 'KYC-1',
+	KYC_2 = 'KYC-2',
+	KYC_3 = 'KYC-3',
+}
+export type CustomerType = {
+	clientName: string;
+	accountCreated: Date;
+	totalAmount: number;
+	kyc: KYC_STATUS;
+};
+
 export enum CLIENT_HIS_STATUS {
 	NOT_SEND = 'Not Send',
 	SENT = 'Sent',
@@ -21,7 +34,13 @@ export type ClientHistoryType = {
 
 export interface ClientHistoryInterface extends BackendResponse {
 	data?: {
-		customer: ClientHistoryType[];
+		history: ClientHistoryType[];
+	};
+}
+
+export interface ClientInterface extends BackendResponse {
+	data?: {
+		customer: CustomerType[];
 	};
 }
 
@@ -32,13 +51,24 @@ export type ClientProps = {
 
 export function useClientsHistory(payload: ClientProps) {
 	return useQuery([config.client.getClientHistory, payload], () =>
+		fetchClientsHistory(payload)
+	);
+}
+export function useClients(payload: ClientProps) {
+	return useQuery([config.client.customer, payload], () =>
 		fetchClients(payload)
 	);
 }
-export function fetchClients(
+export function fetchClientsHistory(
 	payload: ClientProps
 ): Promise<ClientHistoryInterface> {
 	return apiClient
 		.get(config.client.getClientHistory, { params: payload })
+		.then((res) => res.data);
+}
+
+export function fetchClients(payload: ClientProps): Promise<ClientInterface> {
+	return apiClient
+		.get(config.client.customer, { params: payload })
 		.then((res) => res.data);
 }

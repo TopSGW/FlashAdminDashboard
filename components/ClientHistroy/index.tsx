@@ -70,7 +70,7 @@ export default function ClientHistory() {
 	}
 
 	const clientData =
-		data?.success && data.data?.customer ? data.data?.customer : [];
+		data?.success && data.data?.history ? data.data?.history : [];
 
 	return (
 		<div className='w-auto m-0 p-0'>

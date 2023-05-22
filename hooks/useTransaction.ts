@@ -1,28 +1,66 @@
 /** @format */
 
 import { useQuery } from '@tanstack/react-query';
-import { apiClient } from '@utils/api';
+import { apiClient, BackendResponse } from '@utils/api';
 import config from '@utils/api/config';
 
 export type PaginationProps = {
 	curPage: number;
 	pagination: number;
 };
+export type OrdersType = {
+	accountName: string;
+	changeRate: number;
+	total: number;
+	profit: number;
+};
+export type ProfitType = {
+	pair: string;
+	date: Date;
+	amount: number;
+};
+export type TotalNetwortType = {
+	total: number;
+	data: Object;
+};
+export type PaymentCategories = {
+	Cash: number;
+	'Credit Card': number;
+	Crypto: number;
+	'Bank Transfer': number;
+};
+export interface OrdersInterface extends BackendResponse {
+	data?: {
+		orders: OrdersType[];
+	};
+}
 
+export interface ProfitInterface extends BackendResponse {
+	data?: {
+		profits: ProfitType[];
+	};
+}
+
+export interface CommonInterface extends BackendResponse {
+	data?: {
+		totalNetWorth: TotalNetwortType;
+		lastOrder: OrdersType[];
+		lastProfit: ProfitType[];
+		categories: PaymentCategories;
+	};
+}
 export function endpoint(url: string, ...args: Array<any>) {
 	return `${url}/${args.join('/')}`;
 }
 
 export function useCommonInformation() {
-	const { isLoading, data } = useQuery(
-		[config.transaction.getCommonInformation],
-		() => fetchCommonInformation()
+	return useQuery([config.transaction.getCommonInformation], () =>
+		fetchCommonInformation()
 	);
-	return { isLoading, data: data?.data, message: data?.message };
 }
 
 export function useOrders(payload: PaginationProps) {
-	const { isLoading, data } = useQuery(
+	return useQuery(
 		[
 			endpoint(
 				config.transaction.getOrders,
@@ -32,11 +70,10 @@ export function useOrders(payload: PaginationProps) {
 		],
 		() => fetchOrders(payload)
 	);
-	return { isLoading, data: data?.data, message: data?.message };
 }
 
 export function useProfits(payload: PaginationProps) {
-	const { isLoading, data } = useQuery(
+	return useQuery(
 		[
 			endpoint(
 				config.transaction.getProfits,
@@ -46,24 +83,27 @@ export function useProfits(payload: PaginationProps) {
 		],
 		() => fetchProfits(payload)
 	);
-	return { isLoading, data: data?.data, message: data?.message };
 }
 
 // apis
 
-export function fetchCommonInformation() {
+export function fetchCommonInformation(): Promise<CommonInterface> {
 	return apiClient
 		.get(config.transaction.getCommonInformation)
 		.then((res) => res.data);
 }
 
-export function fetchOrders(payload: PaginationProps) {
+export function fetchOrders(
+	payload: PaginationProps
+): Promise<OrdersInterface> {
 	return apiClient
 		.get(config.transaction.getOrders, { params: payload })
 		.then((res) => res.data);
 }
 
-export function fetchProfits(payload: PaginationProps) {
+export function fetchProfits(
+	payload: PaginationProps
+): Promise<ProfitInterface> {
 	return apiClient
 		.get(config.transaction.getProfits, { params: payload })
 		.then((res) => res.data);
