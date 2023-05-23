@@ -1,6 +1,7 @@
 import Image from "next/image"
 import arrowRight from '../assets/image/allTransaction/arrowRight.png';
 import arrowUp from '../assets/image/allTransaction/arrowUp.png';
+import btnUpsvg from '../assets/image/allTransaction/Up.svg'
 import TableItem from "./tableItem";
 import TransactionItem from "./TransactionItem";
 import {
@@ -77,7 +78,27 @@ export default function AllTransaction_MainPart(){
 
         <div className="pt-5 px-5 mt-4">
             <div className="w-full flex max-md:flex-col max-md:justify-center  md:justify-between">
-                <div className="w-[58%] max-md:w-full bg-[#1B1B1B] rounded-md">
+                <div className="w-[58%] max-md:w-full bg-[#1B1B1B] rounded-md p-4">
+                    <div className="flex sm:flex-row sm:justify-between px-2 mt-4 max-sm:flex-col">
+                        <h3 className="text-base text-[#717171]">Total Net Worth</h3>
+                        <div className="max-sm:mt-2">
+                            <button className="flex flex-row items-center px-4 py-2 rounded-md" style={{background: "rgba(85, 186, 104, 0.2)"}}>
+                                <Image src={btnUpsvg} alt={""}/>
+                                <h3 className="ml-2 text-sm text-[#55BA68]">+652.45 (0.18%)</h3>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="mt-1 flex flex-row items-start">
+                        <h3 className="text-[#717171] text-base">$</h3>
+                        <h3 className="text-white text-2xl font-bold">728,510</h3>
+                    </div>
+                    <div className="flex flex-row items-center mt-4 max-sm:hidden">
+                        <button className="px-3 py-1 bg-[#141414] ml-4 text-[#717171] rounded-md">Live</button>
+                        <button className="px-3 py-1 bg-[#141414] ml-4 text-[#717171] rounded-md">1 Week</button>
+                        <button className="px-3 py-1 bg-[#141414] ml-4 text-[#717171] rounded-md">1 Month</button>
+                        <button className="px-3 py-1 bg-[#141414] ml-4 text-[#717171] rounded-md">1 Year</button>
+                        <button className="px-3 py-1 bg-[#141414] ml-4 text-[#717171] rounded-md">All</button>
+                    </div>
                     <Bar options={Itemoption} data={data}/>
                 </div>
                 <div className="w-[40%] max-md:w-full max-md:mt-3 bg-[#252525] rounded-md">
