@@ -112,7 +112,8 @@ export default function Login() {
 						<button
 							className='w-full mx-auto py-4 text-center bg-[#FBBF04] text-black 
                             text-lg font-bold rounded-sm'
-							onClick={() => router.push('/dashboard/overview')}
+							// onClick={() => router.push('/dashboard/overview')}
+							onClick={() => handleLogin()}
 						>
 							Log in
 						</button>

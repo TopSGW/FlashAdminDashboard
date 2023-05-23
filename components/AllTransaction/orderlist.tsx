@@ -8,6 +8,8 @@ import { setAllTransaction_orderview } from '@utils/slice/allTransactionSlice';
 import { setAllTransaction_OrderPagination } from '@utils/slice/allTransactionSlice';
 import { AllTransactinoOrderPaginationState } from '@utils/slice/allTransactionSlice';
 import { Pagination } from '@mui/material';
+import { useOrders } from '@hooks/useTransaction';
+import { toast } from 'react-toastify';
 
 export default function OrderList() {
 	const dispatch = useDispatch();
@@ -15,6 +17,19 @@ export default function OrderList() {
 	const handlePagination = (e: any, page: number) => {
 		dispatch(setAllTransaction_OrderPagination(page));
 	};
+	const { data, isLoading, error } = useOrders({
+		curPage: currentPage,
+		pagination: 10,
+	});
+	if (error) {
+		toast.error((error as any)?.message);
+	}
+
+	if (!error && data && !data?.success) {
+		toast.warn(data.message);
+	}
+
+	const orders = data?.data?.orders ? data?.data?.orders : [];
 	return (
 		<div className='w-auto bg-[#1B1B1B] rounded-md px-4 pt-4 m-5 pb-4'>
 			<div className='flex justify-between items-center'>
@@ -40,18 +55,9 @@ export default function OrderList() {
 					</tr>
 				</thead>
 				<tbody>
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
-					<TableItem />
+					{orders.map((item) => (
+						<TableItem data={item} />
+					))}
 				</tbody>
 			</table>
 			<div className='mt-4 flex justify-center'>

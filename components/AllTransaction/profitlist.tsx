@@ -9,6 +9,8 @@ import { setAllTransaction_profitview } from '@utils/slice/allTransactionSlice';
 import { AllTransactionProfitPaginationState } from '@utils/slice/allTransactionSlice';
 import { setAllTransaction_ProfitPagination } from '@utils/slice/allTransactionSlice';
 import { Pagination } from '@mui/material';
+import { useProfits } from '@hooks/useTransaction';
+import { toast } from 'react-toastify';
 
 export default function ProfitList() {
 	const dispatch = useDispatch();
@@ -16,6 +18,18 @@ export default function ProfitList() {
 	const handlePagination = (e: any, page: number) => {
 		dispatch(setAllTransaction_ProfitPagination(page));
 	};
+	const { data, isLoading, error } = useProfits({
+		curPage: currentPage,
+		pagination: 10,
+	});
+	if (error) {
+		toast.error((error as any)?.message);
+	}
+
+	if (!error && data && !data.success) {
+		toast.warn(data.message);
+	}
+	const profits = data?.data?.profits ? data?.data?.profits : [];
 	return (
 		<div className='w-auto m-5 px-4 pt-4 rounded-md bg-[#1B1B1B] pb-2'>
 			<div className='flex justify-between items-center'>
@@ -45,18 +59,10 @@ export default function ProfitList() {
 					<p className='text-[#717171] text-xs'>10:53</p>
 				</div>
 			</div>
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
-			<TransactionItem />
+			{profits.map((item) => (
+				<TransactionItem data={item} />
+			))}
+
 			<div className='mt-4 flex justify-center'>
 				<Pagination
 					count={5}

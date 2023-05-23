@@ -5,7 +5,7 @@ import { baseUrl, getUrl } from './config';
 
 import config from './config';
 export type BackendResponse = {
-	status: string;
+	success: string;
 	message?: string;
 };
 
@@ -59,9 +59,9 @@ apiClient.interceptors.response.use(
 			return apiClient(originalRequest);
 		}
 
-		// if (error?.response?.status === 401 && location.pathname !== '/') {
-		// 	location.href = '/';
-		// }
+		if (error?.response?.status === 401 && location.pathname !== '/') {
+			location.href = '/';
+		}
 		return Promise.reject(error);
 	}
 );

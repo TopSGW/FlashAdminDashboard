@@ -12,12 +12,12 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setorders } from '../../utils/slice/ordersSlice';
+import { useClients } from '@hooks/useClient';
 export type NewAccountProps = {
 	curPage: number;
 };
 export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 	const router = useRouter();
-	// const {isLoading,data} = useRole({ pagination: 10, curpage: curPage, search: '' });
 
 	const handlePaginationChange = (e: any, page: number) => {
 		router.push('/dashboard/newaccount/' + page);
@@ -34,6 +34,41 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 	useEffect(() => {
 		dispatch(setorders(7));
 	}, [dispatch]);
+	const { data, isLoading, error } = useClients({
+		pagination: 10,
+		curPage: curPage,
+	});
+	if (error) {
+		toast.error((error as any)?.message);
+	}
+
+	if (!error && data && !data.success) {
+		toast.warn(data.message);
+	}
+
+	const customerData = data && data?.data?.customer ? data?.data?.customer : [];
+	const colorData = {
+		'No KYC': {
+			bgColor: 'rgba(248, 110, 81, 0.2)',
+			textColor: '#F86E51',
+		},
+		'KYC-1': {
+			bgColor: 'rgba(251, 191, 4, 0.2)',
+			textColor: '#FBBF04',
+		},
+		'KYC-2': {
+			bgColor: 'rgba(251, 191, 4, 0.2)',
+			textColor: '#FBBF04',
+		},
+		'KYC-3': {
+			bgColor: 'rgba(85, 186, 104, 0.2)',
+			textColor: '#55BA68',
+		},
+		'KYC-4': {
+			bgColor: 'rgba(85, 186, 104, 0.2)',
+			textColor: '#55BA68',
+		},
+	};
 	const tableData = [
 		{
 			section: 'No KYC',
@@ -143,17 +178,19 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 									</tr>
 								</thead>
 								<tbody>
-									{tableData.map((data: any, index) => {
+									{customerData.map((data, index) => {
 										return (
 											<tr key={index}>
 												<td className='text-[#717171] mt-2 text-base py-2 text-left'>
 													<p className='text-base text-white max-sm:text-sm'>
-														Apple
+														{data.clientName}
 													</p>
-													<p className='text-sm max-sm:text-xs'>Apple</p>
+													<p className='text-sm max-sm:text-xs'>
+														{data.clientName}
+													</p>
 												</td>
 												<td className='text-[#717171] mt-2 text-base py-2 text-left max-sm:text-sm'>
-													lh.ago
+													{data.accountCreated.toDateString()}
 												</td>
 												<td className='text-[#717171] mt-2 text-base py-2 text-left max-sm:hidden '>
 													$100.00
@@ -161,11 +198,15 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 												<td className='py-2'>
 													<div className='w-full flex justify-start'>
 														<button
-															style={{ backgroundColor: data.bgColor }}
-															className={`w-[78px] px-3 py-1 rounded-md text-[${data.textColor}] text-center text-sm
+															style={{
+																backgroundColor: colorData[data.kyc].bgColor,
+															}}
+															className={`w-[78px] px-3 py-1 rounded-md text-[${
+																colorData[data.kyc].textColor
+															}] text-center text-sm
                                                             max-sm:hidden max-sm:text-center`}
 														>
-															{data.section}
+															{data.kyc}
 														</button>
 													</div>
 												</td>

@@ -91,3 +91,7 @@ export function convertStringFromCookies(cookies: RequestCookie[]) {
 
 	return result;
 }
+
+export interface BackendResponse {
+	status?: string;
+}
