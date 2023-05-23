@@ -41,7 +41,7 @@ export const AuthSlice = createSlice({
 	name: 'auth',
 	initialState: initAuthState,
 	reducers: {
-		setAuth: (state, action: PayloadAction<IAuth>) => {
+		setAuth: (state: IAuth, action: PayloadAction<IAuth>) => {
 			state.first_name = action.payload.first_name;
 			state.last_name = action.payload.last_name;
 			state.email = action.payload.email;
@@ -50,10 +50,10 @@ export const AuthSlice = createSlice({
 			state.step = action.payload.step;
 			state.isInit = action.payload.isInit;
 		},
-		setInit: (state, action: PayloadAction<boolean>) => {
+		setInit: (state: IAuth, action: PayloadAction<boolean>) => {
 			state.isInit = action.payload;
 		},
-		setQRInfo: (state, action: PayloadAction<IQRInfo>) => {
+		setQRInfo: (state: IAuth, action: PayloadAction<IQRInfo>) => {
 			state.secret = action.payload.secret;
 			state.qrImage = action.payload.qrImage;
 			console.log('state', state);
@@ -77,3 +77,4 @@ export const qrInfo = (state: AppState) => {
 	return { secret: state.auth.secret, qrImage: state.auth.qrImage };
 };
 export default AuthSlice.reducer;
+export type AuthState = ReturnType<typeof AuthSlice.reducer>;

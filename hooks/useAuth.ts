@@ -1,8 +1,8 @@
 /** @format */
 
-import { apiClient } from '@utils/api';
+import { apiClient, BackendResponse } from '@utils/api';
 import config from '@utils/api/config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { onQueryError } from '@utils/errors/query-error';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
@@ -13,27 +13,32 @@ export interface LoginPayload {
 	password: string;
 	rememeber: boolean;
 }
+export interface LoginResponse extends BackendResponse {
+	isSetup?: boolean;
+	isfactor?: boolean;
+}
+export interface SetupOTPResponse extends BackendResponse {
+	data?: {
+		secret: string;
+		qrImage: string;
+	};
+}
 export function useLogin() {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	return useMutation(login, {
-		onSuccess: (response: any) => {
+		onSuccess: (response: LoginResponse) => {
 			if (response.success) {
-				if (response.isInit) {
+				if (response.isSetup) {
 					dispatch(setInit(true));
-					dispatch(
-						setQRInfo({ secret: response.secret, qrImage: response.qrImage })
-					);
 					return router.push('/validate');
 				}
-
+				return router.push('/dashboard/overview/');
+			} else {
 				if (response.isfactor) {
 					dispatch(setInit(false));
-					return router.push('validate');
-				} else {
-					router.push('/dashboard/overview/');
+					return router.push('/validate');
 				}
-			} else {
 				toast.warn(response.message);
 			}
 		},
@@ -58,12 +63,19 @@ export function useLoginOTP() {
 	return useMutation(loginOTP, {
 		onSuccess: (response: any) => {
 			if (response.success) {
-				router.push('/');
+				toast.success('login is success');
+				router.push('/dashboard/overview');
 			} else {
 				toast.warn(response.message);
 			}
 		},
 		onError: (r: any) => onQueryError(r),
+	});
+}
+export function useSetupOTP(isActive: boolean) {
+	return useQuery(['setupOTP'], () => fetchSetupOTP(), {
+		enabled: isActive,
+		staleTime: Infinity,
 	});
 }
 export function useLogout() {
@@ -83,6 +95,9 @@ export function login(payload: LoginPayload) {
 	return apiClient
 		.post(config.auth.signIn, payload)
 		.then((response) => response.data);
+}
+export function fetchSetupOTP(): Promise<SetupOTPResponse> {
+	return apiClient.get(config.auth.setupOTP).then((response) => response.data);
 }
 export function verifyOTP(code: string) {
 	return apiClient
