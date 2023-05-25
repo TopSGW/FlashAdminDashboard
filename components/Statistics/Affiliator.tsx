@@ -98,9 +98,15 @@ import { useEffect } from 'react';
 import { setorders } from '../../utils/slice/ordersSlice';
 import dynamic from 'next/dynamic';
 import DropBox from './Dropbox';
-import { STATISTIC, useCommonInfo } from '@hooks/useStatistic';
+import {
+	DURING,
+	STATISTIC,
+	useCommonInfo,
+	useSalesStatistic,
+} from '@hooks/useStatistic';
 import { toast } from 'react-toastify';
 import { TopAffiliatedType, TopPairType } from './type';
+import { useState, useMemo } from 'react';
 const StatisticsLineChat = dynamic(
 	() => import('./AffiliatorStatisticsLineChart'),
 	{ ssr: false }
@@ -120,6 +126,13 @@ const StatisticsColumnChart = dynamic(
 
 export default function StatisticsAffiliatorIndex() {
 	const dispatch = useDispatch();
+	const [curDate, setCurDate] = useState<Date>(new Date());
+	const curFormateDate = useMemo(() => {
+		const year = curDate.getFullYear();
+		const month = ('0' + (curDate.getMonth() + 1)).slice(-2);
+		const day = ('0' + curDate.getDate()).slice(-2);
+		return `${year}-${month}-${day}`;
+	}, [curDate]);
 	useEffect(() => {
 		dispatch(setorders(1));
 	}, [dispatch]);
@@ -131,20 +144,84 @@ export default function StatisticsAffiliatorIndex() {
 		type: STATISTIC.AFFILIATOR,
 		date: new Date(),
 	});
+	const {
+		data: saleStaticData,
+		isLoading: saleIsLoading,
+		error: saleError,
+	} = useSalesStatistic({ type: STATISTIC.AFFILIATOR, date_type: DURING.YEAR });
 
-	if (error) {
-		toast.error((error as any)?.message);
-	}
+	useEffect(() => {
+		if (error) {
+			toast.error((error as any)?.message);
+		}
 
-	if (!error && !commonData?.success) {
-		toast.warn(commonData?.message);
-	}
+		if (!error && !commonData?.success) {
+			toast.warn(commonData?.message);
+		}
+	}, [commonData, error]);
+
+	useEffect(() => {
+		if (saleError) {
+			toast.error((error as any)?.message);
+		}
+
+		if (!saleError && !saleStaticData?.success) {
+			toast.warn(saleStaticData?.message);
+		}
+	}, [saleStaticData, saleError]);
 
 	const topInfo = commonData?.data?.topInfo;
-	const revenue = commonData?.data?.revenue;
+	const revenue = commonData?.data?.revenue ? commonData?.data?.revenue : [];
 	const topPair = commonData?.data?.topPair ? commonData?.data?.topPair : [];
 	const salesGoal = commonData?.data?.salesGoal;
-
+	const salesGoalData = useMemo(() => {
+		if (salesGoal) {
+			return salesGoal;
+		} else {
+			return {
+				total: 0,
+				current: 0,
+				rate: 0,
+				brandSales: {
+					total: 0,
+					crypto: 0,
+					cash: 0,
+					card: 0,
+					bank: 0,
+				},
+			};
+		}
+	}, [salesGoal]);
+	const barChartData = useMemo(() => {
+		if (revenue.length) {
+			return revenue.map((item) => {
+				return item.amount;
+			});
+		} else {
+			return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		}
+	}, [revenue]);
+	const chartSalesData = saleStaticData?.data?.sales
+		? saleStaticData?.data?.sales
+		: [];
+	const chartData = useMemo(() => {
+		return {
+			labels,
+			datasets: [
+				{
+					label: '',
+					data: barChartData,
+					backgroundColor: '#FBBF04',
+					borderWidth: 1,
+					barThickness: 15,
+					barPercentage: 0.5,
+					categoryPercentage: 0.5,
+					maxBarThickness: 18,
+					borderRadius: 6,
+				},
+			],
+		};
+	}, [barChartData]);
 	const totalSales = topInfo
 		? topInfo.totalSalse
 		: { amount: 0, previous: { amount: 0, rate: 0 } };
@@ -263,7 +340,7 @@ export default function StatisticsAffiliatorIndex() {
 						</div>
 						<div className='mt-5 flex max-[900px]:flex-col min-[900px]:justify-between px-8 max-sm:px-3'>
 							<div className='w-[66%] max-[900px]:w-full rounded-lg bg-[#1B1B1B] flex justify-center px-2'>
-								<Bar options={Itemoption} data={data} />
+								<Bar options={Itemoption} data={chartData} />
 							</div>
 							<div className='w-[32%] max-[900px]:w-full max-[900px]:mt-5 rounded-lg bg-[#1B1B1B] px-4'>
 								<div className='mt-4 flex justify-between items-center'>
@@ -302,7 +379,10 @@ export default function StatisticsAffiliatorIndex() {
 								<h3 className='text-black text-sm sm:text-base lg:text-lg'>
 									Sales Statistics of Affiliates
 								</h3>
-								<StatisticsLineChat chartId={'StatisticsLineChat'} />
+								<StatisticsLineChat
+									chartId={'StatisticsLineChat'}
+									chartData={chartSalesData}
+								/>
 							</div>
 							<div className='w-[48%] max-[900px]:w-full rounded-lg bg-white px-2 pb-2 pt-4 max-[900px]:mt-5'>
 								<h3 className='text-black text-sm sm:text-base lg:text-lg'>
@@ -316,19 +396,25 @@ export default function StatisticsAffiliatorIndex() {
 								<h3 className='font-bold text-white text-[18px]'>Sales Goal</h3>
 								<div className='flex flex-row items-center'>
 									<h4 className='text-[18px] text-[#BCBBB9] font-medium'>
-										$100.00 / <span className='text-[#717171]'>$150.00</span>
+										${salesGoalData.current} /{' '}
+										<span className='text-[#717171]'>
+											$${salesGoalData.total}
+										</span>
 									</h4>
 									<h4 className='text-[15px] ml-auto mr-0 text-[#717171]'>
 										Yearly target
 									</h4>
 								</div>
 								<div className='w-full rounded-full h-[8px] bg-[#717171] mt-3'>
-									<div className='w-[67%] bg-[#FBBF04] rounded-full h-[8px]'></div>
+									<div
+										className={`w-[${salesGoalData.rate}%] bg-[#FBBF04] rounded-full h-[8px]`}
+									></div>
 								</div>
 								<div className='flex flex-row items-center mt-4'>
 									<Image src={growthSvg} alt={''} />
 									<h3 className='text-[#BCBBB9] ml-2 text-[14px]'>
-										19% <span className='text-[#717171]'>vs last year</span>
+										{salesGoalData.rate}%{' '}
+										<span className='text-[#717171]'>vs last year</span>
 									</h3>
 								</div>
 								<div className=' my-10 bg-[#252525] h-[1px] w-full'></div>

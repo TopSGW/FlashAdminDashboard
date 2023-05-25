@@ -98,7 +98,7 @@ export default function OverviewMainpart() {
 		toast.error((error as any)?.message);
 	}
 
-	const isWarning = !error && !data?.success;
+	const isWarning = !error && data && !data?.success;
 
 	if (isWarning) {
 		toast.warning(data?.message);

@@ -215,7 +215,10 @@ export default function OverviewMainpart() {
 								Revenue vs Orders from Afffliation
 							</h1>
 							{/* <Line data={data}/> */}
-							<OverviewLineChart chartId={'OverviewLineChart'} />
+							<OverviewLineChart
+								chartData={RevenuvAndOrders}
+								_chartId={'OverviewLineChart'}
+							/>
 						</div>
 						<div
 							className='w-[26%] max-md:w-full max-md:mt-4 bg-white rounded-lg p-3

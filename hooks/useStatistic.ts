@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { apiClient, BackendResponse } from '@utils/api';
 import config from '@utils/api/config';
-import { TotalInfoProps } from 'components/Overview/type';
+import { RecordCountDailyType, TotalInfoProps } from 'components/Overview/type';
 import {
 	SalesGoalType,
 	TopAffiliatedType,
@@ -50,9 +50,14 @@ export interface CommonDataInterface extends BackendResponse {
 			refunded: TotalInfoProps;
 			totalEarned: TotalInfoProps;
 		};
-		revenue: RevenueMonthData;
+		revenue: RevenueMonthData[];
 		topPair: TopAffiliatedType[] | TopPairType[];
 		salesGoal: SalesGoalType;
+	};
+}
+export interface SalesDataResponse extends BackendResponse {
+	data?: {
+		sales: RecordCountDailyType[];
 	};
 }
 const endpoint = (url: string, ...args: Array<any>) =>
@@ -95,25 +100,17 @@ export function useCommonInfo(payload: CommonInfoType) {
 }
 
 export function useSiteVisitors(payload: TopInfoType) {
-	const { isLoading, data } = useQuery(
+	return useQuery(
 		[endpoint('siteVisitors', payload.type, payload.date_type)],
 		() => fetchSiteVisitors(payload)
 	);
-	if (data?.status === false) {
-		toast.error(data?.message);
-	}
-	return { isLoading, data: data?.data, message: data?.message };
 }
 
 export function useSalesStatistic(payload: TopInfoType) {
-	const { isLoading, data } = useQuery(
+	return useQuery(
 		[endpoint('salesStatistic', payload.type, payload.date_type)],
-		() => fetchSiteVisitors(payload)
+		() => fetchSalesStatistic(payload)
 	);
-	if (data?.status === false) {
-		toast.error(data?.message);
-	}
-	return { isLoading, data: data?.data, message: data?.message };
 }
 
 export function fetchTopInfo(payload: CommonInfoType) {
@@ -150,7 +147,9 @@ export function fetchSiteVisitors(payload: TopInfoType) {
 		.then((res) => res.data);
 }
 
-export function fetchSalesStatistic(payload: TopInfoType) {
+export function fetchSalesStatistic(
+	payload: TopInfoType
+): Promise<SalesDataResponse> {
 	return apiClient
 		.get(config.statistic.salesStatistic, {
 			params: payload,
