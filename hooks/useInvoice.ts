@@ -25,7 +25,7 @@ export interface InvoicesInterface extends BackendResponse {
 export type InvoicePayloadProps = {
 	pagination: number;
 	curpage: number;
-	status: 'past' | 'open' | 'all';
+	status: INVOICE_STATUS.PAID | INVOICE_STATUS.TO_PAID | 'all';
 };
 
 export enum INVOICE_ACTION {

@@ -32,6 +32,7 @@ import { useEffect } from 'react';
 import { setorders } from '../../utils/slice/ordersSlice';
 import { Pagination } from '@mui/material';
 import { useClientsHistory, CLIENT_HIS_STATUS } from '@hooks/useClient';
+import CircleProgress from 'components/progress/circle';
 import { toast } from 'react-toastify';
 export default function ClientHistory() {
 	const router = useRouter();
@@ -77,56 +78,55 @@ export default function ClientHistory() {
 			<HeaderA />
 			<div className=' flex flex-rwo w-full pt-[70px] '>
 				<Sidebar />
-				<div className='w-full bg-black pb-10 pl-[300px] max-lg:pl-0'>
-					<div className='pt-5 px-5'>
-						<h1 className='text-white text-lg font-bold leading-3'>
-							Client History
-						</h1>
-						<p className='mt-2 text-[#717171] text-sm'>
-							Lorem Ipsum is simply dummy text of the printing and typesetting
-						</p>
+				{isLoading ? (
+					<div className='pt-5 pl-[300px] mt-4 flex justify-center h-screen w-full align-middle	'>
+						<CircleProgress size={50} sx={{ margin: 'auto' }} />
 					</div>
-					<div className='mt-4 border-t-[1px] border-[#717171] border-solid'></div>
-					{/* <div className="mt-7 px-5">
-                        <div className="p-4 flex flex-row items-center bg-[#252525] rounded-md">
-                            <button className="px-3 py-5 bg-[#FBBF04] rounded-md text-center">
-                                The most recent invoices
-                            </button>
-                            <button className="ml-4 px-3 py-5 text-[#717171] rounded-md text-center border-2 border-solid border-[#717171]">
-                                Last Client 
-                            </button>
-                        </div>
-                    </div> */}
-					<div className='pt-5 px-5 mt-4'>
-						<table className='mt-4 w-full'>
-							<thead>
-								<tr className=''>
-									<th className='py-2 text-white'>Client name</th>
-									<th className='py-2 text-white max-md:hidden'>Issued date</th>
-									<th className='py-2 text-white max-md:hidden'>Due Date</th>
-									<th className='py-2 text-white max-sm:hidden'>Amount</th>
-									<th className='py-2 text-white max-sm:hidden'>Pair</th>
-									<th className='py-2 text-white'>Status</th>
-								</tr>
-							</thead>
-							<tbody>
-								{clientData.map((item) => {
-									return (
-										<TableItem
-											item={item}
-											text={item.status}
-											color={colorData[item.status].color}
-											bgcolor={colorData[item.status].bgColor}
-										/>
-									);
-								})}
-							</tbody>
-						</table>
-						<div className='w-full flex justify-end pr-[10%]'>
-							<Pagination count={6} color='secondary' shape='rounded' />
+				) : (
+					<div className='w-full bg-black pb-10 pl-[300px] max-lg:pl-0'>
+						<div className='pt-5 px-5'>
+							<h1 className='text-white text-lg font-bold leading-3'>
+								Client History
+							</h1>
+							<p className='mt-2 text-[#717171] text-sm'>
+								Lorem Ipsum is simply dummy text of the printing and typesetting
+							</p>
+						</div>
+						<div className='mt-4 border-t-[1px] border-[#717171] border-solid'></div>
+
+						<div className='pt-5 px-5 mt-4'>
+							<table className='mt-4 w-full'>
+								<thead>
+									<tr className=''>
+										<th className='py-2 text-white'>Client name</th>
+										<th className='py-2 text-white max-md:hidden'>
+											Issued date
+										</th>
+										<th className='py-2 text-white max-md:hidden'>Due Date</th>
+										<th className='py-2 text-white max-sm:hidden'>Amount</th>
+										<th className='py-2 text-white max-sm:hidden'>Pair</th>
+										<th className='py-2 text-white'>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									{clientData.map((item) => {
+										return (
+											<TableItem
+												item={item}
+												text={item.status}
+												color={colorData[item.status].color}
+												bgcolor={colorData[item.status].bgColor}
+											/>
+										);
+									})}
+								</tbody>
+							</table>
+							<div className='w-full flex justify-end pr-[10%]'>
+								<Pagination count={6} color='secondary' shape='rounded' />
+							</div>
 						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);

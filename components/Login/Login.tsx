@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import CookieAcceptBar from 'components/cookieAccpet';
 import { useLogin } from '@hooks/useAuth';
 import { toast } from 'react-toastify';
+import CircleProgress from 'components/progress/circle';
 export default function Login() {
 	const [showstate, setshowstate] = useState(false);
 	const [password, Setpassword] = useState('');
@@ -115,7 +116,9 @@ export default function Login() {
 							// onClick={() => router.push('/dashboard/overview')}
 							onClick={() => handleLogin()}
 						>
-							Log in
+							<div className='flex justify-center'>
+								{login.isLoading ? <CircleProgress /> : <>Log in</>}
+							</div>
 						</button>
 					</div>
 					{/* <div className='mt-6 w-full flex flex-row justify-center items-center'>

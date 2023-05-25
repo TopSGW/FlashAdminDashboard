@@ -23,6 +23,7 @@ export interface SetupOTPResponse extends BackendResponse {
 		qrImage: string;
 	};
 }
+
 export function useLogin() {
 	const router = useRouter();
 	const dispatch = useDispatch();
@@ -45,12 +46,14 @@ export function useLogin() {
 		onError: (r: any) => onQueryError(r),
 	});
 }
+
 export function useVerifyOTP() {
 	const router = useRouter();
 	return useMutation(verifyOTP, {
 		onSuccess: (response: any) => {
 			if (response.success) {
-				router.push('/');
+				toast.success('2FA is success!');
+				router.push('/dashboard/overview');
 			} else {
 				toast.warn(response.message);
 			}

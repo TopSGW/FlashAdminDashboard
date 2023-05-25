@@ -4,6 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { baseUrl, getUrl } from './config';
 
 import config from './config';
+
 export type BackendResponse = {
 	success: string;
 	message?: string;

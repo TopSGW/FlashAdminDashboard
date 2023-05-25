@@ -20,22 +20,7 @@ export default function AllTransactions() {
 	}, [dispatch]);
 	const orderViewState = useSelector(AllTransactionOrderState);
 	const profitViewState = useSelector(AllTransactionProfitState);
-	const { data, isLoading, error } = useCommonInformation();
 
-	if (error) {
-		toast.error((error as any)?.message);
-	}
-
-	if (!error && data && !data.success) {
-		toast.warn(data.message);
-	}
-
-	const totalNetworth = data?.data?.totalNetWorth;
-	const lastProfits = data?.data?.lastProfit ? data?.data?.lastProfit : [];
-	const lastOrders = data?.data?.lastOrder ? data?.data?.lastOrder : [];
-	const categories = data?.data?.categories
-		? data?.data?.categories
-		: { Cash: 0, 'Credit Card': 0, Crypto: 0, 'Bank Transfer': 0 };
 	return (
 		<div className='w-auto m-0 p-0'>
 			<HeaderA />

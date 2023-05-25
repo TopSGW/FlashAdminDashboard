@@ -7,11 +7,13 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AppState } from '../store';
 
 export type userType = {
-	email: string | null;
-	userName: string | null;
+	email: string;
+	userName: string;
 	firstName: string | null;
 	lastName: string | null;
 	profileImg: string | null;
+	description: string | null;
+	phoneNumber: string | null;
 };
 
 export type userStateType = {

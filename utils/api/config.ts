@@ -12,6 +12,7 @@ const config = {
 		refreshToken: 'refreshToken',
 		disableOTP: 'disableOTP',
 		logout: 'logOut',
+		updateProfile: 'updateProfile',
 	},
 	overview: {
 		getTotalInfo: 'getTotalInfo',
