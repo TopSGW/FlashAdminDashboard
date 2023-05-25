@@ -1,213 +1,212 @@
 /** @format */
 
-import Image from 'next/image';
-import logo from '../assets/logo/logo.png';
-import searchImg from '../assets/image/header/searchImg.png';
-import chevronDown from '../assets/image/header/chevron-down.png';
-import man1 from '../assets/image/header/man1.png';
-import notification from '../assets/image/sidebar/notification.png';
-import menu from '../assets/image/sidebar/menu.png';
-import materialsymbol from '../assets/image/sidebar/material-symbols_dashboard.png';
-import statics from '../assets/image/sidebar/statics.png';
-import allTransaction from '../assets/image/sidebar/allTransaction.png';
-import billingInvoice from '../assets/image/sidebar/billingInvoice.png';
-import clientDashboard from '../assets/image/sidebar/clientDashboard.png';
-import supportEmail from '../assets/image/sidebar/supportEmail.png';
-import createInvoice from '../assets/image/sidebar/createInvoice.png';
-import loginImg from '../assets/image/sidebar/login.png';
-import SidebarItem from '../Sidebar/Item';
-import baselineMore from '../assets/image/statistics/baselinemore.png';
+const Tdata = [
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'To paid',
+		Bstatus: 'Pay',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'To paid',
+		Bstatus: 'Pay',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+];
+const PastData = [
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'To paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'To paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+	{
+		invoiceId: '#14586578',
+		StateDate: '05/02/2023',
+		EndDdate: '05/02/2023',
+		TotalShift: '2 shifts',
+		InvoiceAmount: '$500.00',
+		Status: 'Paid',
+		Bstatus: 'Cancel',
+	},
+];
 import HeaderA from '../Header/HeaderA';
 
-import totalSaleschart from '../assets/image/statistics/totalSaleschart.png';
-import totalProfitchart from '../assets/image/statistics/totalProfitchart.png';
-import totalOrderchart from '../assets/image/statistics/totalOrderchart.png';
-import guy1 from '../assets/image/guys/guy1.png';
-
-import TableItem from './tableItem';
-
 import Sidebar from '../Sidebar/Sidebar';
-import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
 import { setorders } from '../../utils/slice/ordersSlice';
 import { Pagination } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import useInvoice, { INVOICE_STATUS } from '@hooks/useInvoice';
 import { toast } from 'react-toastify';
 import CircleProgress from 'components/progress/circle';
+import { useMemo } from 'react';
+import {
+	allInvoicePagination,
+	allInvoiceTotalPage,
+	openInvoicePagination,
+	openInvoiceTotalPage,
+	pastInvoicePagination,
+	pastInvoiceTotalPage,
+	setInvoiceAllPagination,
+	setInvoiceAllTotalPage,
+	setInvoiceOpenPagination,
+	setInvoiceOpenTotalPage,
+	setInvoicePastPagination,
+	setInvoicePastTotalPage,
+} from '@utils/slice/billandInvoiceSlice';
+import { stat } from 'fs';
 export default function BillingInvoice() {
 	const dispatch = useDispatch();
+	const openCurPage = useSelector(openInvoicePagination);
+	const pastCurPage = useSelector(pastInvoicePagination);
+	const allCurPage = useSelector(allInvoicePagination);
+	const openTotalPage = useSelector(openInvoiceTotalPage);
+	const pastTotalPage = useSelector(pastInvoiceTotalPage);
+	const allTotalPage = useSelector(allInvoiceTotalPage);
 	useEffect(() => {
 		dispatch(setorders(3));
 	}, [dispatch]);
+
 	const [tabselected, settabselected] = useState([true, false, false]);
 
-	const Tdata = [
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'To paid',
-			Bstatus: 'Pay',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'To paid',
-			Bstatus: 'Pay',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-	];
-	const PastData = [
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'To paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'To paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-		{
-			invoiceId: '#14586578',
-			StateDate: '05/02/2023',
-			EndDdate: '05/02/2023',
-			TotalShift: '2 shifts',
-			InvoiceAmount: '$500.00',
-			Status: 'Paid',
-			Bstatus: 'Cancel',
-		},
-	];
 	const TdataColor: any = {
 		ToPaid: {
 			bgColor: 'rgba(248, 110, 81, 0.1)',
@@ -230,29 +229,110 @@ export default function BillingInvoice() {
 			border: 'none',
 		},
 	};
-	const status = tabselected[0]
-		? INVOICE_STATUS.PAID
-		: tabselected[1]
-		? INVOICE_STATUS.TO_PAID
-		: 'all';
+	const convertDateToStr = (date: Date) => {
+		const startYear = date.getFullYear();
+		const startMonth = ('0' + (date.getMonth() + 1)).slice(-2);
+		const startDay = ('0' + date.getDate()).slice(-2);
+		return `${startYear}/${startMonth}/${startDay}`;
+	};
+	const status = useMemo(() => {
+		return tabselected[0]
+			? INVOICE_STATUS.TO_PAID
+			: tabselected[1]
+			? INVOICE_STATUS.PAID
+			: 'all';
+	}, [tabselected]);
+	const curPage = useMemo(() => {
+		if (status === INVOICE_STATUS.TO_PAID) {
+			return openCurPage;
+		} else if (status === INVOICE_STATUS.PAID) {
+			return pastCurPage;
+		} else {
+			return allCurPage;
+		}
+	}, [status, openCurPage, pastCurPage, allCurPage]);
 	const { data, isLoading, error } = useInvoice({
 		pagination: 10,
-		curpage: 1,
+		curpage: curPage,
 		status: status,
 	});
-	if (error) {
-		toast.error((error as any)?.message);
-	}
-	if (!error && data && !data.success) {
-		toast.warn(data.message);
-	}
-	const invoices = data?.data ? data.data.invoices : [];
-	const InvoicesTableData =
-		status === INVOICE_STATUS.TO_PAID
-			? invoices.filter((item) => item.status === INVOICE_STATUS.TO_PAID)
-			: status === INVOICE_STATUS.PAID
-			? invoices.filter((item) => item.status === INVOICE_STATUS.PAID)
-			: invoices;
+
+	useEffect(() => {
+		if (error) {
+			toast.error((error as any)?.message);
+		}
+		if (!error && data && !data.success) {
+			toast.warn(data.message);
+		}
+		if (!error && data && data.success) {
+			const count = data.data?.totalRecord ? data.data?.totalRecord : 0;
+			let totalPage = 0;
+			if (count % 10) {
+				totalPage = Math.floor(count / 10) + 1;
+			} else {
+				totalPage = parseInt((count / 10).toFixed(0));
+			}
+
+			handleChangeTotalPage(totalPage);
+		}
+	}, [error, data]);
+
+	const invoices = useMemo(() => {
+		return data?.data ? data.data.invoices : [];
+	}, [data]);
+
+	const InvoicesTableData = useMemo(() => {
+		const tableData =
+			status === INVOICE_STATUS.TO_PAID
+				? invoices.filter((item) => item.status === INVOICE_STATUS.TO_PAID)
+				: status === INVOICE_STATUS.PAID
+				? invoices.filter((item) => item.status === INVOICE_STATUS.PAID)
+				: invoices;
+
+		const result = tableData.map((item) => {
+			return {
+				...item,
+				startDate: convertDateToStr(new Date(item.startDate)),
+				endDate: convertDateToStr(new Date(item.startDate)),
+			};
+		});
+		return result;
+	}, [invoices]);
+
+	const curTotalPage = useMemo(() => {
+		if (status === INVOICE_STATUS.TO_PAID) {
+			return openTotalPage;
+		} else if (status === INVOICE_STATUS.PAID) {
+			return pastTotalPage;
+		} else {
+			return allTotalPage;
+		}
+	}, [status, openTotalPage, pastTotalPage, allTotalPage]);
+
+	const handleChangePagination = useCallback(
+		(e: any, value: number) => {
+			if (status === INVOICE_STATUS.TO_PAID) {
+				dispatch(setInvoiceOpenPagination(value));
+			} else if (status === INVOICE_STATUS.PAID) {
+				dispatch(setInvoicePastPagination(value));
+			} else {
+				dispatch(setInvoiceAllPagination(value));
+			}
+		},
+		[status]
+	);
+	const handleChangeTotalPage = useCallback(
+		(totalPage: number) => {
+			if (status === INVOICE_STATUS.TO_PAID) {
+				dispatch(setInvoiceOpenTotalPage(totalPage));
+			} else if (status === INVOICE_STATUS.PAID) {
+				dispatch(setInvoicePastTotalPage(totalPage));
+			} else {
+				dispatch(setInvoiceAllTotalPage(totalPage));
+			}
+		},
+		[status]
+	);
 	return (
 		<div className='w-auto m-0 p-0'>
 			<HeaderA />
@@ -354,7 +434,7 @@ export default function BillingInvoice() {
 											<Checkbox />
 											<div className='w-[120px] pl-8'>
 												<h3 className='text-[#717171] text-base'>
-													{item.invoiceId}
+													#{item.invoiceId}
 												</h3>
 											</div>
 											<div className='w-[120px] pl-8 max-lg:hidden'>
@@ -407,7 +487,13 @@ export default function BillingInvoice() {
 									);
 								})}
 								<div className='mt-4 w-full flex justify-end pr-[10%]'>
-									<Pagination count={6} color='secondary' shape='rounded' />
+									<Pagination
+										count={curTotalPage}
+										color='secondary'
+										shape='rounded'
+										page={curPage}
+										onChange={handleChangePagination}
+									/>
 								</div>
 							</>
 						</div>

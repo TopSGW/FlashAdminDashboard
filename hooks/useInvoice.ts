@@ -20,6 +20,7 @@ export type InvoiceDataType = {
 export interface InvoicesInterface extends BackendResponse {
 	data?: {
 		invoices: InvoiceDataType[];
+		totalRecord: number; //totalcount
 	};
 }
 export type InvoicePayloadProps = {

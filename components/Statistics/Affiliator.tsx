@@ -254,6 +254,8 @@ export default function StatisticsAffiliatorIndex() {
 										<DropBox />
 									</div>
 									<input
+										value={curFormateDate}
+										onChange={(e) => setCurDate(new Date(e.target.value))}
 										type='date'
 										className='px-3 py-2 border-solid border-gray-500 border-2 max-sm:hidden
                                      bg-slate-500 rounded-md'

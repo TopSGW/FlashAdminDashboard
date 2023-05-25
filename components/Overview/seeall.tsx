@@ -4,10 +4,14 @@ import Image from 'next/image';
 import guy1 from '../assets/image/guys/guy1.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOverview_SeeAllViewValue } from '@utils/slice/overviewSlice';
-import { Overview_paginationState } from '@utils/slice/overviewSlice';
-import { setOverview_PaginationValue } from '@utils/slice/overviewSlice';
+
+import {
+	setOverview_PaginationValue,
+	Overview_paginationState,
+} from '@utils/slice/overviewSlice';
+
 import { Pagination } from '@mui/material';
-import { TypeActivity, useActivity } from '@hooks/useOverview';
+import { useActivity } from '@hooks/useOverview';
 import { STATISTIC } from '@hooks/useStatistic';
 import { toast } from 'react-toastify';
 import CircleProgress from 'components/progress/circle';

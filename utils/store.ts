@@ -27,6 +27,7 @@ import menubarSlice from './slice/menubarSlice';
 import overviewAffiliatorSlice from './slice/overviewAffiliator';
 import OverAffiliatorSlice from './slice/OverAffiliatorSlice';
 import AuthSlice from './slice/authenticateSlice';
+import billandInvoiceSlice from './slice/billandInvoiceSlice';
 const rootReducer = combineReducers({
 	orders: ordersSlice,
 	user: userSlice,
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
 	overviewAffiliator: overviewAffiliatorSlice,
 	overAffiliator: OverAffiliatorSlice,
 	auth: AuthSlice,
+	billAndInvoice: billandInvoiceSlice,
 });
 const makeConfiguredStore = () =>
 	configureStore({
@@ -59,6 +61,7 @@ export const makeStore = () => {
 				'overAffiliator',
 				'overviewAffiliator',
 				'auth',
+				'billAndInvoice',
 			], // make sure it does not clash with server keys
 			storage,
 		};
