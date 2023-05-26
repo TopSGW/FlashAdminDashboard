@@ -291,9 +291,9 @@ export default function OverviewMainpart() {
 									</tr>
 								</thead>
 								<tbody>
-									{recentActivityData.map((item) => {
+									{recentActivityData.map((item,index) => {
 										return (
-											<tr>
+											<tr key={index}>
 												<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
 													#{item.orderId}
 												</td>

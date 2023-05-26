@@ -99,8 +99,8 @@ export default function AffiliatorSeeAllData() {
 								</tr>
 							</thead>
 							<tbody>
-								{_data.map((item) => (
-									<tr>
+								{_data.map((item ,index) => (
+									<tr key={index}>
 										<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
 											#{item.orderId}
 										</td>

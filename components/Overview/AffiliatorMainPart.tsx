@@ -99,8 +99,8 @@ export default function OverviewMainpart() {
 	const topInformation = data?.data?.topInfo;
 
 	const RevenuvAndOrders = data?.data?.revenue ? data?.data.revenue : [];
-	const recentActivity = data?.data?.rencetActivity
-		? data?.data?.rencetActivity
+	const recentActivity = data?.data?.recentActivity
+		? data?.data?.recentActivity
 		: [];
 
 	const totalSalesData = topInformation
@@ -274,8 +274,8 @@ export default function OverviewMainpart() {
 									</tr>
 								</thead>
 								<tbody>
-									{recentActivity.map((item) => (
-										<tr>
+									{recentActivity.map((item,index:number) => (
+										<tr key={index}>
 											<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
 												#{item.orderId}
 											</td>

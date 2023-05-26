@@ -336,8 +336,8 @@ export default function TransferIndex() {
 										</tr>
 									</thead>
 									<tbody>
-										{topPair.map((item: TopPairType | TopAffiliatedType) => (
-											<tr>
+										{topPair.map((item: TopPairType | TopAffiliatedType,index) => (
+											<tr key={index}>
 												<td className='py-2'>
 													<div className='flex flex-row items-center'>
 														<Image src={guy1} width={20} alt={''} />

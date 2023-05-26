@@ -101,8 +101,8 @@ export default function SeeAllData() {
 								</tr>
 							</thead>
 							<tbody>
-								{_data.map((item) => (
-									<tr>
+								{_data.map((item,key) => (
+									<tr key={key}>
 										<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
 											#{item.orderId}
 										</td>

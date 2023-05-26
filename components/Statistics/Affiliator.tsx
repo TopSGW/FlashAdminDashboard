@@ -359,8 +359,8 @@ export default function StatisticsAffiliatorIndex() {
 										</tr>
 									</thead>
 									<tbody>
-										{topPair.map((item: TopPairType | TopAffiliatedType) => (
-											<tr>
+										{topPair.map((item: TopPairType | TopAffiliatedType,key:number) => (
+											<tr key={key}>
 												<td className='py-2'>
 													<div className='flex flex-row items-center'>
 														<Image src={guy1} width={20} alt={''} />

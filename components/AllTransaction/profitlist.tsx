@@ -83,8 +83,8 @@ export default function ProfitList() {
 							<p className='text-[#717171] text-xs'>10:53</p>
 						</div>
 					</div>
-					{profits.map((item) => (
-						<TransactionItem data={item} />
+					{profits.map((item,key) => (
+						<TransactionItem key={key} data={item} />
 					))}
 
 					<div className='mt-4 flex justify-center'>

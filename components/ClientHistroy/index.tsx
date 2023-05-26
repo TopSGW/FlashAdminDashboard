@@ -135,9 +135,10 @@ export default function ClientHistory() {
 									</tr>
 								</thead>
 								<tbody>
-									{clientData.map((item) => {
+									{clientData.map((item,index) => {
 										return (
 											<TableItem
+												key={index}
 												item={item}
 												text={item.status}
 												color={colorData[item.status].color}

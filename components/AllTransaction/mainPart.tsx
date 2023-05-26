@@ -228,8 +228,8 @@ export default function AllTransaction_MainPart() {
 										</tr>
 									</thead>
 									<tbody>
-										{lastOrders.map((item) => (
-											<TableItem data={item} />
+										{lastOrders.map((item,index:number) => (
+											<TableItem data={item}  key={index}/>
 										))}
 									</tbody>
 								</table>
@@ -253,8 +253,8 @@ export default function AllTransaction_MainPart() {
 									</div>
 								</div>
 
-								{lastProfits.map((item) => (
-									<TransactionItem data={item} />
+								{lastProfits.map((item ,index) => (
+									<TransactionItem  key ={index} data={item} />
 								))}
 							</div>
 						</div>

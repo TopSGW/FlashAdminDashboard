@@ -83,8 +83,8 @@ export default function OrderList() {
 							</tr>
 						</thead>
 						<tbody>
-							{orders.map((item) => (
-								<TableItem data={item} />
+							{orders.map((item,index) => (
+								<TableItem data={item} key={index} />
 							))}
 						</tbody>
 					</table>
