@@ -1,7 +1,7 @@
 /** @format */
 
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { apiClient, BackendResponse } from '@utils/api';
+import { apiClient, BackendResponse, queryClient } from '@utils/api';
 import config from '@utils/api/config';
 import { onQueryError } from '@utils/errors/query-error';
 import { toast } from 'react-toastify';
@@ -15,7 +15,7 @@ export type InvoiceDataType = {
 	endDate: Date;
 	totalShifts: number;
 	amount: number;
-	status: INVOICE_STATUS;
+	status: INVOICE_STATUS | 'Cancel';
 };
 export interface InvoicesInterface extends BackendResponse {
 	data?: {
@@ -50,10 +50,12 @@ export function fetchInvoice(
 		.then((res) => res.data);
 }
 
-export function useUpdateInvoice() {
+export function useUpdateInvoice(payload: InvoicePayloadProps) {
 	return useMutation(udpateInvoice, {
 		onSuccess: (response: any) => {
 			if (response.success) {
+				toast.success('Success');
+				queryClient.invalidateQueries([invoiceEndpoint(payload)]);
 			} else {
 				toast.warn(response.message);
 			}

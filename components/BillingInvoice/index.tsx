@@ -174,7 +174,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { setorders } from '../../utils/slice/ordersSlice';
 import { Pagination } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
-import useInvoice, { INVOICE_STATUS } from '@hooks/useInvoice';
+import useInvoice, {
+	INVOICE_ACTION,
+	INVOICE_STATUS,
+	useUpdateInvoice,
+} from '@hooks/useInvoice';
 import { toast } from 'react-toastify';
 import CircleProgress from 'components/progress/circle';
 import { useMemo } from 'react';
@@ -195,6 +199,7 @@ import {
 import { stat } from 'fs';
 export default function BillingInvoice() {
 	const dispatch = useDispatch();
+	const [workingRows, setWorkingRows] = useState<string[]>([]);
 	const openCurPage = useSelector(openInvoicePagination);
 	const pastCurPage = useSelector(pastInvoicePagination);
 	const allCurPage = useSelector(allInvoicePagination);
@@ -332,6 +337,30 @@ export default function BillingInvoice() {
 			}
 		},
 		[status]
+	);
+	const updateInvoiceHandler = useUpdateInvoice({
+		pagination: 10,
+		curpage: curPage,
+		status: status,
+	});
+	const handleUpdateInvoice = useCallback(
+		(invoiceId: string, status: INVOICE_ACTION) => {
+			if (invoiceId === '') {
+				return toast.warn('There is not invoice id to update');
+			}
+			setWorkingRows((prevWorkingRows) => [...prevWorkingRows, invoiceId]);
+			updateInvoiceHandler.mutate(
+				{ id: invoiceId, status: status },
+				{
+					onSettled: (data, error, variables, context) => {
+						setWorkingRows((prevWorkginRows) =>
+							prevWorkginRows.filter((workingRow) => workingRow !== invoiceId)
+						);
+					},
+				}
+			);
+		},
+		[updateInvoiceHandler]
 	);
 	return (
 		<div className='w-auto m-0 p-0'>
@@ -472,16 +501,30 @@ export default function BillingInvoice() {
 												</button>
 											</div>
 											<div className='w-[120px] ml-auto max-2xl:hidden'>
-												<button
-													className='px-4 py-1 text-sm rounded-md font-bold'
-													style={{
-														color: `${TdataColor[bstatus]?.color}`,
-														backgroundColor: `${TdataColor[bstatus]?.bgColor}`,
-														border: `${TdataColor[bstatus]?.border}`,
-													}}
-												>
-													{bstatus}
-												</button>
+												{item.status !== 'Cancel' && (
+													<button
+														className='px-4 py-1 text-sm rounded-md font-bold'
+														style={{
+															color: `${TdataColor[bstatus]?.color}`,
+															backgroundColor: `${TdataColor[bstatus]?.bgColor}`,
+															border: `${TdataColor[bstatus]?.border}`,
+														}}
+														disabled={workingRows.includes(item.invoiceId)}
+														onClick={() => {
+															let action =
+																item.status === INVOICE_STATUS.PAID
+																	? INVOICE_ACTION.CANCEL
+																	: INVOICE_ACTION.PAY;
+															handleUpdateInvoice(item.invoiceId, action);
+														}}
+													>
+														{workingRows.includes(item.invoiceId) ? (
+															<CircleProgress />
+														) : (
+															<>{bstatus}</>
+														)}
+													</button>
+												)}
 											</div>
 										</div>
 									);
