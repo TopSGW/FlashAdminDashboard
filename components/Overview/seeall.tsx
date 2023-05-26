@@ -3,7 +3,11 @@
 import Image from 'next/image';
 import guy1 from '../assets/image/guys/guy1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOverview_SeeAllViewValue } from '@utils/slice/overviewSlice';
+import {
+	Overview_SeeAllTotalPage,
+	setOverview_SeeAllTotalPage,
+	setOverview_SeeAllViewValue,
+} from '@utils/slice/overviewSlice';
 
 import {
 	setOverview_PaginationValue,
@@ -15,9 +19,11 @@ import { useActivity } from '@hooks/useOverview';
 import { STATISTIC } from '@hooks/useStatistic';
 import { toast } from 'react-toastify';
 import CircleProgress from 'components/progress/circle';
+import { useEffect, useMemo } from 'react';
 export default function SeeAllData() {
 	const dispatch = useDispatch();
 	const currentpage = useSelector(Overview_paginationState);
+	const totalPage = useSelector(Overview_SeeAllTotalPage);
 	const handlePagination = (e: any, page: number) => {
 		dispatch(setOverview_PaginationValue(page));
 	};
@@ -26,15 +32,45 @@ export default function SeeAllData() {
 		curPage: currentpage,
 		pagination: 10,
 	});
-	if (error) {
-		toast.error((error as any)?.message);
-	}
+	const convertDateToStr = (date: Date) => {
+		const startYear = date.getFullYear();
+		const startMonth = ('0' + (date.getMonth() + 1)).slice(-2);
+		const startDay = ('0' + date.getDate()).slice(-2);
+		return `${startYear}/${startMonth}/${startDay}`;
+	};
+	useEffect(() => {
+		if (error) {
+			toast.error((error as any)?.message);
+		}
 
-	if (!error && !data?.success) {
-		toast.warn(data?.message);
-	}
+		if (!error && !data?.success) {
+			toast.warn(data?.message);
+		}
+		if (!error && data && data.success) {
+			const count = data.data?.totalRecords ? data.data?.totalRecords : 0;
+			let totalPage = 0;
+			if (count % 10) {
+				totalPage = Math.floor(count / 10) + 1;
+			} else {
+				totalPage = parseInt((count / 10).toFixed(0));
+			}
 
-	const activityData = data?.data ? data.data.activity : [];
+			dispatch(setOverview_SeeAllTotalPage(totalPage));
+		}
+	}, [error, data]);
+
+	const activityData = useMemo(() => {
+		return data?.data ? data.data.activity : [];
+	}, [data]);
+	const _data = useMemo(() => {
+		return activityData.map((item) => {
+			const _date = item.date ? new Date(item.date) : new Date();
+			return {
+				...item,
+				date: convertDateToStr(_date),
+			};
+		});
+	}, [activityData]);
 	return (
 		<>
 			{isLoading ? (
@@ -65,7 +101,7 @@ export default function SeeAllData() {
 								</tr>
 							</thead>
 							<tbody>
-								{activityData.map((item) => (
+								{_data.map((item) => (
 									<tr>
 										<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
 											#{item.orderId}
@@ -81,7 +117,7 @@ export default function SeeAllData() {
 										</td>
 
 										<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-											{item.date.toString()}
+											{item.date}
 										</td>
 										<td className='text-[#8D8D93] text-base text-center py-2'>
 											${item.amount}
@@ -99,7 +135,7 @@ export default function SeeAllData() {
 						</table>
 						<div className='mt-4 flex justify-center'>
 							<Pagination
-								count={5}
+								count={totalPage}
 								page={currentpage}
 								onChange={handlePagination}
 								color='primary'

@@ -34,6 +34,7 @@ export interface TypeUseTotalInfo extends BackendResponse {
 export interface TypeActivity extends BackendResponse {
 	data?: {
 		activity: ActivityType[];
+		totalRecords: number;
 	};
 }
 export function useTotalInfo(type: STATISTIC) {

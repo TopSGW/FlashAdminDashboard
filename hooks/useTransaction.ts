@@ -32,12 +32,14 @@ export type PaymentCategories = {
 export interface OrdersInterface extends BackendResponse {
 	data?: {
 		orders: OrdersType[];
+		totalRecord: number;
 	};
 }
 
 export interface ProfitInterface extends BackendResponse {
 	data?: {
 		profits: ProfitType[];
+		totalRecord: number;
 	};
 }
 

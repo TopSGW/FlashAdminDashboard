@@ -5,16 +5,22 @@ import arrowRight from '../assets/image/allTransaction/arrowRight.png';
 import arrowUp from '../assets/image/allTransaction/arrowUp.png';
 import TransactionItem from './TransactionItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllTransaction_profitview } from '@utils/slice/allTransactionSlice';
+import {
+	AllTransactionProfitTotalPageState,
+	setAllTransaction_ProfitTotalPage,
+	setAllTransaction_profitview,
+} from '@utils/slice/allTransactionSlice';
 import { AllTransactionProfitPaginationState } from '@utils/slice/allTransactionSlice';
 import { setAllTransaction_ProfitPagination } from '@utils/slice/allTransactionSlice';
 import { Pagination } from '@mui/material';
 import { useProfits } from '@hooks/useTransaction';
 import { toast } from 'react-toastify';
 import CircleProgress from 'components/progress/circle';
+import { useEffect } from 'react';
 export default function ProfitList() {
 	const dispatch = useDispatch();
 	const currentPage = useSelector(AllTransactionProfitPaginationState);
+	const totalPage = useSelector(AllTransactionProfitTotalPageState);
 	const handlePagination = (e: any, page: number) => {
 		dispatch(setAllTransaction_ProfitPagination(page));
 	};
@@ -22,13 +28,25 @@ export default function ProfitList() {
 		curPage: currentPage,
 		pagination: 10,
 	});
-	if (error) {
-		toast.error((error as any)?.message);
-	}
+	useEffect(() => {
+		if (error) {
+			toast.error((error as any)?.message);
+		}
 
-	if (!error && data && !data.success) {
-		toast.warn(data.message);
-	}
+		if (!error && data && !data.success) {
+			toast.warn(data.message);
+		}
+		if (!error && data && data.success) {
+			const count = data.data?.totalRecord ? data.data?.totalRecord : 0;
+			let totalPage = 0;
+			if (count % 10) {
+				totalPage = Math.floor(count / 10) + 1;
+			} else {
+				totalPage = parseInt((count / 10).toFixed(0));
+			}
+			dispatch(setAllTransaction_ProfitTotalPage(totalPage));
+		}
+	}, [data, error]);
 	const profits = data?.data?.profits ? data?.data?.profits : [];
 	return (
 		<>
@@ -71,7 +89,7 @@ export default function ProfitList() {
 
 					<div className='mt-4 flex justify-center'>
 						<Pagination
-							count={5}
+							count={totalPage}
 							page={currentPage}
 							onChange={handlePagination}
 							color='primary'

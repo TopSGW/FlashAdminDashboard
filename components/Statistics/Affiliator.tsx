@@ -142,7 +142,7 @@ export default function StatisticsAffiliatorIndex() {
 		error,
 	} = useCommonInfo({
 		type: STATISTIC.AFFILIATOR,
-		date: new Date(),
+		date: curDate,
 	});
 	const {
 		data: saleStaticData,
