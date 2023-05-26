@@ -37,6 +37,7 @@ import {
 	TotalInfoProps,
 	TRACKING,
 } from './type';
+import { useEffect, useMemo } from 'react';
 ChartJS.register(
 	CategoryScale,
 	LinearScale,
@@ -94,37 +95,55 @@ export default function OverviewMainpart() {
 	const dispatch = useDispatch();
 	const { data, isLoading, error } = useTotalInfo(STATISTIC.FLASH);
 
-	if (error) {
-		toast.error((error as any)?.message);
-	}
+	useEffect(() => {
+		if (error) {
+			toast.error((error as any)?.message);
+		}
 
-	const isWarning = !error && data && !data?.success;
+		const isWarning = !error && data && !data?.success;
 
-	if (isWarning) {
-		toast.warning(data?.message);
-	}
+		if (isWarning) {
+			toast.warning(data?.message);
+		}
+	}, [data, error]);
+	const convertDateToStr = (date: Date) => {
+		const startYear = date.getFullYear();
+		const startMonth = ('0' + (date.getMonth() + 1)).slice(-2);
+		const startDay = ('0' + date.getDate()).slice(-2);
+		return `${startYear}/${startMonth}/${startDay}`;
+	};
+	const { topInformation, RevenuvAndOrders, recentActivity } = useMemo(() => {
+		const topInformation = data?.data?.topInfo;
 
-	const topInformation = data?.data?.topInfo;
+		const RevenuvAndOrders = data?.data?.revenue ? data?.data.revenue : [];
+		const recentActivity = data?.data?.recentActivity
+			? data?.data?.recentActivity
+			: [];
+		return { topInformation, RevenuvAndOrders, recentActivity };
+	}, [data]);
+	const recentActivityData = useMemo(() => {
+		return recentActivity.map((item) => ({
+			...item,
+			date: convertDateToStr(new Date(item.date)),
+		}));
+	}, [recentActivity]);
+	const { totalSalesData, visitors, totalOrders, refunded } = useMemo(() => {
+		const totalSalesData = topInformation
+			? topInformation.totalSalse
+			: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
 
-	const RevenuvAndOrders = data?.data?.revenue ? data?.data.revenue : [];
-	const recentActivity = data?.data?.rencetActivity
-		? data?.data?.rencetActivity
-		: [];
+		const visitors = topInformation
+			? topInformation.visitors
+			: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
+		const totalOrders = topInformation
+			? topInformation.totalOrders
+			: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
 
-	const totalSalesData = topInformation
-		? topInformation.totalSalse
-		: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
-
-	const visitors = topInformation
-		? topInformation.visitors
-		: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
-	const totalOrders = topInformation
-		? topInformation.totalOrders
-		: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
-
-	const refunded = topInformation
-		? topInformation.refunded
-		: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
+		const refunded = topInformation
+			? topInformation.refunded
+			: ({ amount: 0, previous: { amount: 0, rate: 0 } } as TotalInfoProps);
+		return { refunded, totalOrders, visitors, totalSalesData };
+	}, [topInformation]);
 
 	return (
 		<>
@@ -272,7 +291,7 @@ export default function OverviewMainpart() {
 									</tr>
 								</thead>
 								<tbody>
-									{recentActivity.map((item: ActivityType) => {
+									{recentActivityData.map((item) => {
 										return (
 											<tr>
 												<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
@@ -287,7 +306,10 @@ export default function OverviewMainpart() {
 													</div>
 												</td>
 												<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
-													{item.date.toString()}
+													{item.date}
+												</td>
+												<td className='text-[#8D8D93] text-base text-center py-2 max-sm:hidden'>
+													${item.amount}
 												</td>
 												<td className='py-2 max-sm:hidden'>
 													<div className='text-[#55BA68] flex justify-center'>
