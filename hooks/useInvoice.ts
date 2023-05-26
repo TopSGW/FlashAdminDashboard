@@ -10,6 +10,7 @@ export enum INVOICE_STATUS {
 	PAID = 'Paid',
 }
 export type InvoiceDataType = {
+	id: string;
 	invoiceId: string;
 	startDate: Date;
 	endDate: Date;
@@ -66,6 +67,6 @@ export function useUpdateInvoice(payload: InvoicePayloadProps) {
 
 export function udpateInvoice(payload: InvoiceUpdateProps) {
 	return apiClient
-		.post(config.bill.updateInvoice, { payload })
+		.post(config.bill.updateInvoice, payload)
 		.then((res) => res.data);
 }

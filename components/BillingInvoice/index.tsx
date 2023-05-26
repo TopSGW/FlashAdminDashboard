@@ -509,16 +509,16 @@ export default function BillingInvoice() {
 															backgroundColor: `${TdataColor[bstatus]?.bgColor}`,
 															border: `${TdataColor[bstatus]?.border}`,
 														}}
-														disabled={workingRows.includes(item.invoiceId)}
+														disabled={workingRows.includes(item.id)}
 														onClick={() => {
 															let action =
 																item.status === INVOICE_STATUS.PAID
 																	? INVOICE_ACTION.CANCEL
 																	: INVOICE_ACTION.PAY;
-															handleUpdateInvoice(item.invoiceId, action);
+															handleUpdateInvoice(item.id, action);
 														}}
 													>
-														{workingRows.includes(item.invoiceId) ? (
+														{workingRows.includes(item.id) ? (
 															<CircleProgress />
 														) : (
 															<>{bstatus}</>
