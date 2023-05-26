@@ -27,15 +27,24 @@ import TableItem from './tableItem';
 import HeaderA from '../Header/HeaderA';
 import Sidebar from '../Sidebar/Sidebar';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useMemo } from 'react';
 import { setorders } from '../../utils/slice/ordersSlice';
 import { Pagination } from '@mui/material';
 import { useClientsHistory, CLIENT_HIS_STATUS } from '@hooks/useClient';
 import CircleProgress from 'components/progress/circle';
 import { toast } from 'react-toastify';
+import {
+	getClientHistoryPagination,
+	getClientHistoryTotalPage,
+	setClientHIsPagination,
+	setClientHIsTotalPage,
+} from '@utils/slice/clientHistorySlice';
 export default function ClientHistory() {
 	const router = useRouter();
+	const pagination = useSelector(getClientHistoryPagination);
+	const totalPage = useSelector(getClientHistoryTotalPage);
+
 	const dispatch = useDispatch();
 
 	const colorData = {
@@ -59,19 +68,36 @@ export default function ClientHistory() {
 		dispatch(setorders(9));
 	}, [dispatch]);
 	const { data, isLoading, error } = useClientsHistory({
-		curPage: 1,
+		curPage: pagination,
 		pagination: 10,
 	});
-	if (error) {
-		toast.error((error as any)?.message);
-	}
+	useEffect(() => {
+		if (error) {
+			toast.error((error as any)?.message);
+		}
 
-	if (!error && data && !data.success) {
-		toast.warn(data.message);
-	}
+		if (!error && data && !data.success) {
+			toast.warn(data.message);
+		}
+		if (!error && data && data.success) {
+			const count = data.data?.totalRecord ? data.data?.totalRecord : 0;
+			let totalPage = 0;
+			if (count % 10) {
+				totalPage = Math.floor(count / 10) + 1;
+			} else {
+				totalPage = parseInt((count / 10).toFixed(0));
+			}
+			dispatch(setClientHIsTotalPage(totalPage));
+		}
+	}, [data, error]);
 
-	const clientData =
-		data?.success && data.data?.history ? data.data?.history : [];
+	const clientData = useMemo(() => {
+		return data?.success && data.data?.history ? data.data?.history : [];
+	}, [data]);
+
+	const handleChangePagination = (e: any, value: number) => {
+		dispatch(setClientHIsPagination(value));
+	};
 
 	return (
 		<div className='w-auto m-0 p-0'>
@@ -122,7 +148,13 @@ export default function ClientHistory() {
 								</tbody>
 							</table>
 							<div className='w-full flex justify-end pr-[10%]'>
-								<Pagination count={6} color='secondary' shape='rounded' />
+								<Pagination
+									count={totalPage}
+									color='secondary'
+									shape='rounded'
+									page={pagination}
+									onChange={handleChangePagination}
+								/>
 							</div>
 						</div>
 					</div>

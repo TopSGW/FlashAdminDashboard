@@ -9,27 +9,86 @@ import { Pagination } from '@mui/material';
 import useRole from '@hooks/useRole';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setorders } from '../../utils/slice/ordersSlice';
 import { useClients } from '@hooks/useClient';
 import CircleProgress from 'components/progress/circle';
+import {
+	getCustomerTotalPage,
+	setCustomerTotalPage,
+} from '@utils/slice/clientHistorySlice';
+const tableData = [
+	{
+		section: 'No KYC',
+		bgColor: 'rgba(248, 110, 81, 0.2)',
+		textColor: '#F86E51',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-2',
+		bgColor: 'rgba(251, 191, 4, 0.2)',
+		textColor: '#FBBF04',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+	{
+		section: 'KYC-3',
+		bgColor: 'rgba(85, 186, 104, 0.2)',
+		textColor: '#55BA68',
+	},
+];
 export type NewAccountProps = {
 	curPage: number;
 };
 export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 	const router = useRouter();
-
+	const totalPage = useSelector(getCustomerTotalPage);
 	const handlePaginationChange = (e: any, page: number) => {
 		router.push('/dashboard/newaccount/' + page);
 	};
-
-	// const totalPage = data?data.totalPage:1
-	// const isPageExist = data?.success?true:false;
-	// if(!isLoading && !isPageExist){
-	// 	toast.error("page dotn exist");
-	// }
-	// const tableData = (!isLoading &&!isPageExist)?[]:data?.users;
 
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -39,15 +98,42 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 		pagination: 10,
 		curPage: curPage,
 	});
-	if (error) {
-		toast.error((error as any)?.message);
-	}
+	useEffect(() => {
+		if (error) {
+			toast.error((error as any)?.message);
+		}
 
-	if (!error && data && !data.success) {
-		toast.warn(data.message);
-	}
-
-	const customerData = data && data?.data?.customer ? data?.data?.customer : [];
+		if (!error && data && !data.success) {
+			toast.warn(data.message);
+		}
+		if (!error && data && data.success) {
+			const count = data.data?.totalRecord ? data.data?.totalRecord : 0;
+			let totalPage = 0;
+			if (count % 10) {
+				totalPage = Math.floor(count / 10) + 1;
+			} else {
+				totalPage = parseInt((count / 10).toFixed(0));
+			}
+			dispatch(setCustomerTotalPage(totalPage));
+		}
+	}, [error, data]);
+	const convertDateToStr = (date: Date) => {
+		const startYear = date.getFullYear();
+		const startMonth = ('0' + (date.getMonth() + 1)).slice(-2);
+		const startDay = ('0' + date.getDate()).slice(-2);
+		return `${startYear}/${startMonth}/${startDay}`;
+	};
+	const customerData = useMemo(() => {
+		return data && data?.data?.customer ? data?.data?.customer : [];
+	}, [data]);
+	const _data = useMemo(() => {
+		return customerData.map((item) => {
+			return {
+				...item,
+				accountCreated: convertDateToStr(new Date(item.accountCreated)),
+			};
+		});
+	}, [customerData]);
 	const colorData = {
 		'No KYC': {
 			bgColor: 'rgba(248, 110, 81, 0.2)',
@@ -70,68 +156,7 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 			textColor: '#55BA68',
 		},
 	};
-	const tableData = [
-		{
-			section: 'No KYC',
-			bgColor: 'rgba(248, 110, 81, 0.2)',
-			textColor: '#F86E51',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-2',
-			bgColor: 'rgba(251, 191, 4, 0.2)',
-			textColor: '#FBBF04',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-		{
-			section: 'KYC-3',
-			bgColor: 'rgba(85, 186, 104, 0.2)',
-			textColor: '#55BA68',
-		},
-	];
+
 	return (
 		<div className='w-auto m-0 p-0'>
 			<HeaderA />
@@ -184,7 +209,7 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 										</tr>
 									</thead>
 									<tbody>
-										{customerData.map((data, index) => {
+										{_data.map((data, index) => {
 											return (
 												<tr key={index}>
 													<td className='text-[#717171] mt-2 text-base py-2 text-left'>
@@ -196,7 +221,7 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 														</p>
 													</td>
 													<td className='text-[#717171] mt-2 text-base py-2 text-left max-sm:text-sm'>
-														{data.accountCreated.toDateString()}
+														{data.accountCreated}
 													</td>
 													<td className='text-[#717171] mt-2 text-base py-2 text-left max-sm:hidden '>
 														$100.00
@@ -223,7 +248,7 @@ export default function NewAccount({ curPage = 1 }: NewAccountProps) {
 								</table>
 								<div className='w-full flex justify-center mt-2'>
 									<Pagination
-										count={4}
+										count={totalPage}
 										color='primary'
 										shape='rounded'
 										defaultPage={curPage ? curPage : 1}

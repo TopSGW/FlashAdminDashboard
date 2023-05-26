@@ -98,12 +98,19 @@ export default function Role({ curPage = 1 }: RoleProps) {
 			toast.warn('Please input information correctly');
 			return;
 		}
-		createAdmin.mutate({
-			email: email,
-			roleDescription: roleDes,
-			role: curRole,
-			password,
-		});
+		createAdmin.mutate(
+			{
+				email: email,
+				roleDescription: roleDes,
+				role: curRole,
+				password,
+			},
+			{
+				onSettled: (data, error, options) => {
+					handleClose();
+				},
+			}
+		);
 	};
 
 	const totalPage = data ? data.totalPage : 1;
@@ -294,16 +301,21 @@ export default function Role({ curPage = 1 }: RoleProps) {
 								</div>
 								<div className='ml-2 mr-4 max-[318px]:mt-2'>
 									<button
+										disabled={createAdmin.isLoading}
 										className='flex justify-center items-center
                                             bg-[#FBBF04] rounded-md px-4 py-3 max-sm:px-3'
 										onClick={() => handleCreateAdmin()}
 									>
-										<p
-											className='text-black text-sm font-bold max-sm:text-xs 
-                                                '
-										>
-											Send invitation
-										</p>
+										{createAdmin.isLoading ? (
+											<CircleProgress />
+										) : (
+											<p
+												className='text-black text-sm font-bold max-sm:text-xs 
+													'
+											>
+												Send invitation
+											</p>
+										)}
 									</button>
 								</div>
 							</div>
