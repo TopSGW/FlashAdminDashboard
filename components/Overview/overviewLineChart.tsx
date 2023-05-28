@@ -12,6 +12,11 @@ export interface OverviewLineChartInterface {
 	chartData: RecordCountDailyType[];
 	_chartId: string;
 }
+export type ChartDataType = {
+	date: number;
+	revenue: number;
+	order: number;
+};
 export default function OverviewLineChart({
 	chartData,
 	_chartId,
@@ -43,21 +48,17 @@ export default function OverviewLineChart({
 		date.setHours(0, 0, 0, 0);
 		let value = 100;
 
-		function generateData() {
-			value = Math.round(Math.random() * 10 - 4.2 + value);
-			am5.time.add(date, 'day', 1);
+		function generateRealData(item: RecordCountDailyType): ChartDataType {
+			const date = new Date(item._id.year, item._id.month, item._id.day);
 			return {
 				date: date.getTime(),
-				value: value,
+				revenue: item.revenue,
+				order: item.count,
 			};
 		}
-
-		function generateDatas(count: any) {
-			let data = [];
-			for (var i = 0; i < count; ++i) {
-				data.push(generateData());
-			}
-			return data;
+		function generateReldatas(datas: RecordCountDailyType[]): ChartDataType[] {
+			const result = datas.map((item) => generateRealData(item));
+			return result;
 		}
 
 		// Create axes
@@ -82,13 +83,25 @@ export default function OverviewLineChart({
 
 		// Add series
 		// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-		for (var i = 0; i < 2; i++) {
+
+		/**
+		 * generate revenue chart
+		 *
+		 */
+		let data = generateReldatas(chartData);
+		name.forEach((item) => {
+			let YField = '';
+			if (item == 'Revenue') {
+				YField = 'revenue';
+			} else {
+				YField = 'order';
+			}
 			let series = chart.series.push(
 				am5xy.LineSeries.new(root, {
-					name: name[i],
+					name: name[0],
 					xAxis: xAxis,
 					yAxis: yAxis,
-					valueYField: 'value',
+					valueYField: YField,
 					valueXField: 'date',
 					tooltip: am5.Tooltip.new(root, {
 						pointerOrientation: 'horizontal',
@@ -96,18 +109,14 @@ export default function OverviewLineChart({
 					}),
 				})
 			);
-
-			date = new Date();
-			date.setHours(0, 0, 0, 0);
-			value = 0;
-
-			let data = generateDatas(100);
 			series.data.setAll(data);
-
-			// Make stuff animate on load
-			// https://www.amcharts.com/docs/v5/concepts/animations/
 			series.appear();
-		}
+		});
+
+		// Make stuff animate on load
+		// https://www.amcharts.com/docs/v5/concepts/animations/
+
+		// order chat
 
 		// Add cursor
 		// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
@@ -207,7 +216,7 @@ export default function OverviewLineChart({
 		return () => {
 			root.dispose();
 		};
-	}, [chartId]);
+	}, [chartId, chartData]);
 	return (
 		<div
 			id={chartId}

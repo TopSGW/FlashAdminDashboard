@@ -1,5 +1,5 @@
 /** @format */
-export const baseUrl = process.env.BASE_URL || 'http://localhost:5000';
+export const baseUrl = process.env.NEXT_PUBLIC || 'http://localhost:5000';
 const config = {
 	auth: {
 		getProfile: 'getProfile',
@@ -12,6 +12,7 @@ const config = {
 		refreshToken: 'refreshToken',
 		disableOTP: 'disableOTP',
 		logout: 'logOut',
+		updateProfile: 'updateProfile',
 	},
 	overview: {
 		getTotalInfo: 'getTotalInfo',

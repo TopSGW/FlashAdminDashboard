@@ -20,7 +20,7 @@ export type ActivityProps = {
 
 export interface TypeUseTotalInfo extends BackendResponse {
 	data?: {
-		rencetActivity: Array<ActivityType>;
+		recentActivity: Array<ActivityType>;
 		revenue: RecordCountDailyType[];
 		topInfo: {
 			refunded: TotalInfoProps;
@@ -34,6 +34,7 @@ export interface TypeUseTotalInfo extends BackendResponse {
 export interface TypeActivity extends BackendResponse {
 	data?: {
 		activity: ActivityType[];
+		totalRecords: number;
 	};
 }
 export function useTotalInfo(type: STATISTIC) {

@@ -1,7 +1,7 @@
 /** @format */
 
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { apiClient, BackendResponse } from '@utils/api';
+import { apiClient, BackendResponse, queryClient } from '@utils/api';
 import config from '@utils/api/config';
 import { onQueryError } from '@utils/errors/query-error';
 import { toast } from 'react-toastify';
@@ -10,22 +10,24 @@ export enum INVOICE_STATUS {
 	PAID = 'Paid',
 }
 export type InvoiceDataType = {
+	id: string;
 	invoiceId: string;
 	startDate: Date;
 	endDate: Date;
 	totalShifts: number;
 	amount: number;
-	status: INVOICE_STATUS;
+	status: INVOICE_STATUS | 'Cancel';
 };
 export interface InvoicesInterface extends BackendResponse {
 	data?: {
 		invoices: InvoiceDataType[];
+		totalRecord: number; //totalcount
 	};
 }
 export type InvoicePayloadProps = {
 	pagination: number;
 	curpage: number;
-	status: 'past' | 'open' | 'all';
+	status: INVOICE_STATUS.PAID | INVOICE_STATUS.TO_PAID | 'all';
 };
 
 export enum INVOICE_ACTION {
@@ -49,10 +51,12 @@ export function fetchInvoice(
 		.then((res) => res.data);
 }
 
-export function useUpdateInvoice() {
+export function useUpdateInvoice(payload: InvoicePayloadProps) {
 	return useMutation(udpateInvoice, {
 		onSuccess: (response: any) => {
 			if (response.success) {
+				toast.success('Success');
+				queryClient.invalidateQueries([invoiceEndpoint(payload)]);
 			} else {
 				toast.warn(response.message);
 			}
@@ -63,6 +67,6 @@ export function useUpdateInvoice() {
 
 export function udpateInvoice(payload: InvoiceUpdateProps) {
 	return apiClient
-		.post(config.bill.updateInvoice, { payload })
+		.post(config.bill.updateInvoice, payload)
 		.then((res) => res.data);
 }

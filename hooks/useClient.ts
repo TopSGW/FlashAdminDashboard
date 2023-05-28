@@ -35,12 +35,14 @@ export type ClientHistoryType = {
 export interface ClientHistoryInterface extends BackendResponse {
 	data?: {
 		history: ClientHistoryType[];
+		totalRecord: number;
 	};
 }
 
 export interface ClientInterface extends BackendResponse {
 	data?: {
 		customer: CustomerType[];
+		totalRecord: number;
 	};
 }
 

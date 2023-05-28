@@ -9,9 +9,15 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AuthState, getAuth, setInit } from '@utils/slice/authenticateSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoginOTP, useSetupOTP, useVerifyOTP } from '@hooks/useAuth';
+import {
+	loginOTP,
+	useLoginOTP,
+	useSetupOTP,
+	useVerifyOTP,
+} from '@hooks/useAuth';
 import OtpInput from 'react-otp-input';
 import { toast } from 'react-toastify';
+import CircleProgress from 'components/progress/circle';
 export default function Validate() {
 	const router = useRouter();
 	const dispatch = useDispatch();
@@ -171,7 +177,11 @@ export default function Validate() {
 									onClick={() => handleVerify()}
 								>
 									<button className='w-full font-medium px-4 py-3 bg-[#FBBF04] rounded-lg text-[#151103] text-[16px] max-sm:text-[14px] text-center'>
-										validate
+										{verifyHandler.isLoading || otpLoginHandler.isLoading ? (
+											<CircleProgress />
+										) : (
+											<>validate</>
+										)}
 									</button>
 								</div>
 								<div className='pt-4 pb-6 flex flex-row w-full justify-center'>

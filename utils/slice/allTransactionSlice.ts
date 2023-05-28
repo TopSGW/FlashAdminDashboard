@@ -11,6 +11,8 @@ export interface allTransactinoState {
 	profitview_value: boolean;
 	paginationOrder_value: number;
 	paginationProfit_value: number;
+	paginationOrder_totalPage: number;
+	paginationProfit_totalPage: number;
 }
 
 const initialState: allTransactinoState = {
@@ -18,6 +20,8 @@ const initialState: allTransactinoState = {
 	profitview_value: false,
 	paginationOrder_value: 1,
 	paginationProfit_value: 1,
+	paginationOrder_totalPage: 1,
+	paginationProfit_totalPage: 1,
 };
 
 export const allTransactionSlice = createSlice({
@@ -42,6 +46,18 @@ export const allTransactionSlice = createSlice({
 		) => {
 			state.paginationProfit_value = action.payload;
 		},
+		setAllTransaction_ProfitTotalPage: (
+			state,
+			action: PayloadAction<number>
+		) => {
+			state.paginationProfit_totalPage = action.payload;
+		},
+		setAllTransaction_OrderTotalPage: (
+			state,
+			action: PayloadAction<number>
+		) => {
+			state.paginationOrder_totalPage = action.payload;
+		},
 	},
 	extraReducers: {
 		[HYDRATE]: (state, action) => {
@@ -62,6 +78,9 @@ export const { setAllTransaction_OrderPagination } =
 
 export const { setAllTransaction_ProfitPagination } =
 	allTransactionSlice.actions;
+export const { setAllTransaction_OrderTotalPage } = allTransactionSlice.actions;
+export const { setAllTransaction_ProfitTotalPage } =
+	allTransactionSlice.actions;
 
 export const AllTransactionOrderState = (state: AppState) =>
 	state.allTransaction.orderview_value;
@@ -74,5 +93,9 @@ export const AllTransactinoOrderPaginationState = (state: AppState) =>
 
 export const AllTransactionProfitPaginationState = (state: AppState) =>
 	state.allTransaction.paginationProfit_value;
+export const AllTransactionProfitTotalPageState = (state: AppState) =>
+	state.allTransaction.paginationProfit_totalPage;
+export const AllTransactionOrderTotalPageState = (state: AppState) =>
+	state.allTransaction.paginationOrder_totalPage;
 
 export default allTransactionSlice.reducer;
