@@ -223,8 +223,8 @@ export default function AllTransaction_MainPart() {
 								</tr>
 							</thead>
 							<tbody>
-								{lastOrders.map((item) => (
-									<TableItem data={item} />
+								{lastOrders.map((item, index) => (
+									<TableItem data={item} key={index} />
 								))}
 							</tbody>
 						</table>
