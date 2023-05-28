@@ -6,6 +6,7 @@ export default function clientDashboard(){
             <HeaderV/>
             <main>
                 <ClientHistory/>
+                <div className=" w-screen h-[100vh] z-[-1] bg-[#000] fixed"></div>
             </main>
         </div>
     )

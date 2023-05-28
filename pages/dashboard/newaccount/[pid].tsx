@@ -16,6 +16,7 @@ export default function NewAccount() {
 			<HeaderV />
 			<main>
 				<DashboardNewAccount curPage={pid ? parseInt(pid) : 1} />
+				<div className=" w-screen h-[100vh] z-[-1] bg-[#141414] fixed"></div>
 			</main>
 		</div>
 	);

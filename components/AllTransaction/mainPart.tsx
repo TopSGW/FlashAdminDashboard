@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import arrowRight from '../assets/image/allTransaction/arrowRight.png';
 import arrowUp from '../assets/image/allTransaction/arrowUp.png';
-import TableItem from "./tableItem";
+import TableItemBox from "./tableItem";
 import TransactionItem from "./TransactionItem";
 import {
 	Chart as ChartJS,
@@ -77,6 +77,7 @@ import { setAllTransaction_orderview } from '@utils/slice/allTransactionSlice';
 import { setAllTransaction_profitview } from '@utils/slice/allTransactionSlice';
 import { useCommonInformation } from '@hooks/useTransaction';
 import { toast } from 'react-toastify';
+import TableItem from './tableItem';
 
 export default function AllTransaction_MainPart() {
 	const dispatch = useDispatch();
@@ -185,16 +186,41 @@ export default function AllTransaction_MainPart() {
                             <tr>
                                 <th className="text-white py-2 text-left">Account Name</th>
                                 <th className="text-white py-2 text-left max-sm:hidden">Change</th>
-                                <th className="text-white py-2 text-center max-sm:hidden">Cost</th>
+                                <th className="text-white py-2 text-center max-sm:hidden">Total</th>
                                 <th className="text-white py-2 text-right">Profit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <TableItem/>
-                            <TableItem/>
-                            <TableItem/>
-                            <TableItem/>
-                            <TableItem/>
+                            <TableItemBox data={{
+                                    accountName: 'Sunumgoji',
+                                    changeRate: 0,
+                                    total: 450,
+                                    profit: 2
+                                }}/>
+                            <TableItem data={{
+                                    accountName: 'Sunumgoji',
+                                    changeRate: 18.31,
+                                    total: 4555,
+                                    profit: 2
+                                }}/>
+                            <TableItem data={{
+                                    accountName: 'Sunumgoji',
+                                    changeRate: 18.31,
+                                    total: 2000,
+                                    profit: 2
+                                }}/>
+                            <TableItem data={{
+                                    accountName: 'Sunumgoji',
+                                    changeRate: 18.31,
+                                    total: 5000,
+                                    profit: 2
+                                }}/>
+                            <TableItem data={{
+                                    accountName: 'Sunumgoji',
+                                    changeRate: 15.67,
+                                    total: 5000,
+                                    profit: 2
+                                }}/>
                         </tbody>
                     </table>
                 </div>
